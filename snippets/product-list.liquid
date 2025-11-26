@@ -1,0 +1,426 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+PRODUCT LIST COMPONENT
+----------------------------------------------------------------------------------------------------------------------
+
+This component display a list of product that can be used in collection, search...
+
+********************************************
+Supported variables
+********************************************
+
+* products: the list of products to render
+* id: the id of the product list (neeeded for carousel)
+* prefix_id: an optional prefix that is used to prefix all the inputs. This is useful when we have to output multiple
+             product list on the same page, to avoid any ID conflicts.
+* section_color_scheme: the color scheme of the section where the product list is used. By default, the theme uses
+                        the section.settings.color_scheme so it does not have to be passed explicitly, but it can
+                        be overriden if needed
+* blocks: the list of blocks from section
+* allow_highlight: set to true to highlight a product
+* spotlight: set to true to display a carousel on desktop that shows one product at a time.
+* stack: set to true when products are stacked
+* show_placeholder: set to true to display placeholder when no product set
+* show_variants_as_separate_cards: if true, products with color options will display one card per color variant
+* cards_per_page: number of cards to show per page when show_variants_as_separate_cards is enabled
+* specific_colors_to_show: comma-separated list of color names to filter (e.g., "Red, Blue, Black")
+* output_override_attributes: only for collection page, we allow customers to switch the layout. To avoid CLS, we have
+                              to save the attribute in the cart and apply it to the product list. A better approach would
+                              be to use container query around cards, but unfortunately we are using subgrid, and currently
+                              in browsers, subgrid and container queries can't be used together, so we have to revert to
+                              this approach
+{%- endcomment -%}
+<product-list {% if id %}id="{{ id }}"{% endif %} class="product-list {% if stack == false or spotlight == false %}product-list--carousel scroll-area bleed{% endif %} {% if spotlight %}product-list--spotlight scroll-area bleed{% if settings.product_listing_spacing == 'none' %}border{% endif %}{% endif %}" {% if output_override_attributes %}mobile-items-per-row="{{ cart.attributes.product_card_mobile_items_per_row | default: section.settings.products_per_row_mobile }}" desktop-layout="{{ cart.attributes.product_card_desktop_layout | default: 'grid' }}"{% endif %}>
+  {%- liquid
+    assign has_active_filters = false
+
+    for filter in collection.filters
+      if filter.type == 'price_range'
+        if filter.max_value.value != blank or filter.min_value.value != blank
+          assign has_active_filters = true
+          break
+        endif
+      else
+        if filter.active_values.size > 0
+          assign has_active_filters = true
+          break
+        endif
+      endif
+    endfor
+  -%}
+
+  {%- capture sizes -%}
+    {%- if stack -%}
+      (max-width: 699px) calc(100vw / {{ section.settings.products_per_row_mobile | default: 2 }}), (max-width: 999px) calc(100vw / {{ section.settings.products_per_row_desktop | default: 4 | at_most: 3 }} - 64px), calc(100vw / {{ section.settings.products_per_row_desktop | default: 4 }})
+    {%- else -%}
+      (max-width: 699px) 74vw, (max-width: 999px) 38vw, calc(100vw / {{ section.settings.products_per_row_desktop | default: 4 }})
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- liquid
+    # Track how many cards we've rendered to respect the cards-per-page limit
+    assign cards_rendered = 0
+    if show_variants_as_separate_cards
+      # Use the dedicated cards_per_page setting for variant mode, or fall back to pagination size
+      if cards_per_page and cards_per_page > 0
+        assign max_cards_per_page = cards_per_page
+      else
+        if paginate
+          assign max_cards_per_page = paginate.page_size
+        endif
+      endif
+    endif
+  -%}
+
+  {%- for product in products -%}
+    {%- liquid
+      # Check if we've reached the card limit before processing promo blocks
+      if max_cards_per_page and cards_rendered >= max_cards_per_page
+        break
+      endif
+    -%}
+
+    {%- for block in blocks -%}
+      {%- if has_active_filters or paginate.current_page > 1 or forloop.parentloop.index != block.settings.position -%}
+        {%- continue -%}
+      {%- endif -%}
+
+      {%- liquid
+        # Check if we've reached the card limit before rendering promo block
+        if max_cards_per_page and cards_rendered >= max_cards_per_page
+          break
+        endif
+      -%}
+
+      <div class="product-list__promo {% if block.settings.image == blank and settings.product_listing_spacing == 'none' %}outline{% endif %} color-scheme color-scheme--{{ block.settings.color_scheme.id }}" {% if settings.stagger_products %}reveal-on-scroll="true"{% endif %} style="--product-list-promo-row-span: {{ block.settings.size | split: '_' | last }}; --product-list-promo-column-span: {{ block.settings.size | split: '_' | first }}; {%- if block.type == 'image' and block.settings.enable_hotspots -%}--hot-spot-background: {{ block.settings.hot_spot_background.rgb }}; --hot-spot-text-color: {{ block.settings.hot_spot_color.rgb }}; --hot-spot-size: {{ block.settings.hot_spot_size }}px;{%- endif -%}" {{ block.shopify_attributes }}>
+        <div class="content-box min-h-full {% if block.type == 'image' and block.settings.enable_hotspots %}overflow-visible{% endif %}">
+          <div class="content-box__background-media with-overlay" style="--overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
+            {%- liquid
+              if block.type == 'image'
+                if block.settings.image != blank
+                  render 'media', media: block.settings.image, mobile_media: block.settings.mobile_image
+                endif
+
+              elsif block.type == 'video'
+                if block.settings.video != blank
+                  render 'media', media: block.settings.video, mobile_media: block.settings.mobile_video, autoplay: true, loop: true, muted: true, controls: false, preload: forloop.first, show_play_button: false
+                endif
+              endif
+            -%}
+          </div>
+
+          {%- if block.settings.heading != blank or block.settings.content != blank or block.settings.subheading != blank -%}
+            <div class="{{ block.settings.content_position }}">
+              <div class="prose prose-justify-{{ block.settings.content_position | split: '-' | last }}">
+                {%- if block.settings.subheading != blank -%}
+                  {%- render 'subheading', content: block.settings.subheading -%}
+                {%- endif -%}
+
+                {%- if block.settings.heading != blank -%}
+                  {%- render 'heading', content: block.settings.heading, style: block.settings.heading_size -%}
+                {%- endif -%}
+
+                {%- if block.settings.content != blank -%}
+                  <div class="max-w-xs">
+                    {{- block.settings.content -}}
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.button_text -%}
+                  {%- render 'button',
+                      content: block.settings.button_text,
+                      href: block.settings.url,
+                      style: block.settings.style,
+                      external: block.settings.open_in_new_tab
+                  -%}
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- if block.type == 'image' and block.settings.enable_hotspots -%}
+            {%- liquid
+              assign no_bg_class = ''
+              if block.settings.hot_spot_icon_style == 'cross-no-bg' or block.settings.hot_spot_icon_style == 'numbers-no-bg'
+                assign no_bg_class = ' hot-spot__dot--no-bg'
+              endif
+            -%}
+
+            {%- for i in (1..4) -%}
+              {%- capture hotspot_product_key -%}hotspot_{{ i }}_product{%- endcapture -%}
+              {%- capture hotspot_label_key -%}hotspot_{{ i }}_label{%- endcapture -%}
+              {%- capture hotspot_desktop_h_key -%}hotspot_{{ i }}_desktop_horizontal{%- endcapture -%}
+              {%- capture hotspot_desktop_v_key -%}hotspot_{{ i }}_desktop_vertical{%- endcapture -%}
+              {%- capture hotspot_mobile_h_key -%}hotspot_{{ i }}_mobile_horizontal{%- endcapture -%}
+              {%- capture hotspot_mobile_v_key -%}hotspot_{{ i }}_mobile_vertical{%- endcapture -%}
+              
+              {%- assign hotspot_product = block.settings[hotspot_product_key] -%}
+              
+              {%- if hotspot_product != blank -%}
+                {%- assign hotspot_label = block.settings[hotspot_label_key] -%}
+                {%- assign hotspot_desktop_h_pos = block.settings[hotspot_desktop_h_key] -%}
+                {%- assign hotspot_desktop_v_pos = block.settings[hotspot_desktop_v_key] -%}
+                {%- assign hotspot_mobile_h_pos = block.settings[hotspot_mobile_h_key] -%}
+                {%- assign hotspot_mobile_v_pos = block.settings[hotspot_mobile_v_key] -%}
+                {%- capture quick_buy_id -%}collection-quick-buy-{{ block.id }}-{{ i }}-{{ hotspot_product.id }}{%- endcapture -%}
+
+                <div class="hot-spot" style="--hot-spot-mobile-horizontal-position: {{ hotspot_mobile_h_pos }}%; --hot-spot-mobile-vertical-position: {{ hotspot_mobile_v_pos }}%; --hot-spot-desktop-horizontal-position: {{ hotspot_desktop_h_pos }}%; --hot-spot-desktop-vertical-position: {{ hotspot_desktop_v_pos }}%; --hot-spot-dot-size: var(--hot-spot-size); --hot-spot-dot-shadow-size: calc(var(--hot-spot-size) * 1.7);">
+                  <button class="hot-spot__dot hot-spot__dot--product{{ no_bg_class }}" aria-expanded="false" aria-controls="{{ quick_buy_id }}" style="width: {{ block.settings.hot_spot_icon_size }}px; height: {{ block.settings.hot_spot_icon_size }}px;">
+                    <span class="sr-only">{{ 'sections.hot_spots.show_hot_spot_details' | t }}</span>
+                    {%- if block.settings.hot_spot_icon_style == 'numbers-no-bg' -%}
+                      <span class="hot-spot__number" aria-hidden="true" style="font-size: {{ block.settings.hot_spot_icon_size }}px; font-weight: 700; line-height: 1; color: rgb(var(--hot-spot-text-color));">{{ hotspot_label }}</span>
+                    {%- else -%}
+                      {%- render 'icon' with 'hot-spot-cross' -%}
+                    {%- endif -%}
+                  </button>
+
+                  <quick-buy-modal id="{{ quick_buy_id }}" product-url="{{ hotspot_product.url }}" class="modal modal--quick-buy color-scheme color-scheme--{{ settings.default_color_scheme.id }}">
+                    {%- comment -%}The content will be dynamically filled in JS{%- endcomment -%}
+                  </quick-buy-modal>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+
+        {%- if block.type == 'image' and block.settings.text_below_image != blank -%}
+          {%- liquid
+            case settings.product_card_style
+              when 'subheading'
+                assign title_class = 'subheading'
+              when 'body_text'
+                assign title_class = 'text-sm'
+              when 'heading'
+                assign title_class = 'heading'
+            endcase
+            
+            if block.settings.disable_text_scrolling
+              assign wrapper_class = 'image-collection-undertext-wrapper--static'
+            else
+              assign wrapper_class = 'image-collection-undertext-wrapper'
+            endif
+            
+            assign text_alignment = block.settings.text_alignment | default: 'center'
+            assign text_size = block.settings.text_size | default: 'large'
+          -%}
+          
+          <div style="padding-top: 1rem;" class="image-collection-undertext-container" data-alignment="{{ text_alignment }}">
+            <div class="{{ wrapper_class }}">
+              <span class="image-collection-undertext image-collection-undertext--{{ text_size }} {{ title_class }}">{{ block.settings.text_below_image }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- liquid
+        # Increment counter for promo block (they take space like product cards)
+        assign cards_rendered = cards_rendered | plus: 1
+      -%}
+    {%- endfor -%}
+
+    {%- if show_variants_as_separate_cards and product.has_only_default_variant == false -%}
+      {%- comment -%}Render each color variant as a separate card{%- endcomment -%}
+      {%- liquid
+        # Find the color option
+        assign color_labels = 'color,colour,couleur,farbe,colore,cor,färg,kleur,kolor,barva,väri' | downcase | split: ','
+        assign color_option = blank
+        assign color_option_position = blank
+        
+        for color_label in color_labels
+          assign color_label_stripped = color_label | strip
+          if product.options_by_name[color_label_stripped] != blank
+            assign color_option = product.options_by_name[color_label_stripped]
+            assign color_option_position = color_option.position
+            break
+          endif
+        endfor
+      -%}
+
+      {%- if color_option != blank -%}
+        {%- comment -%}If product has color option, show one card per color{%- endcomment -%}
+        {%- liquid
+          # Parse the specific colors filter (if provided)
+          assign allowed_colors_filter = blank
+          if specific_colors_to_show != blank
+            assign allowed_colors_list = specific_colors_to_show | split: ','
+            for allowed_color in allowed_colors_list
+              assign allowed_color_clean = allowed_color | strip | downcase
+              assign allowed_colors_filter = allowed_colors_filter | append: '|' | append: allowed_color_clean | append: '|'
+            endfor
+          endif
+        -%}
+        
+        {%- assign rendered_colors = '' -%}
+        {%- assign variant_loop_should_break = false -%}
+        {%- for variant in product.variants -%}
+          {%- liquid
+            # Check if we've reached the card limit - exit both loops
+            if max_cards_per_page and cards_rendered >= max_cards_per_page
+              assign variant_loop_should_break = true
+              break
+            endif
+
+            # Get the color value for this variant
+            case color_option_position
+              when 1
+                assign variant_color = variant.option1
+              when 2
+                assign variant_color = variant.option2
+              when 3
+                assign variant_color = variant.option3
+            endcase
+
+            # Check if we've already rendered this color (skip duplicates)
+            assign color_check = '|' | append: variant_color | append: '|'
+            if rendered_colors contains color_check
+              continue
+            endif
+
+            # Check if this color is in the allowed list (if filter is set)
+            # If not in the allowed list, skip this color but keep looking
+            if allowed_colors_filter != blank
+              assign variant_color_lower = variant_color | downcase
+              assign variant_color_check = '|' | append: variant_color_lower | append: '|'
+              unless allowed_colors_filter contains variant_color_check
+                continue
+              endunless
+            endif
+
+            # This color passes all filters - mark it as rendered
+            assign rendered_colors = rendered_colors | append: color_check
+          -%}
+          
+          {%- comment -%}Render the card and increment counter{%- endcomment -%}
+          {%- render 'product-card', product: product, variant: variant, reveal: true, allow_highlight: allow_highlight, sizes: sizes, force_no_border: spotlight, section_color_scheme: section_color_scheme, prefix_id: prefix_id, position: forloop.index -%}
+          {%- assign cards_rendered = cards_rendered | plus: 1 -%}
+        {%- endfor -%}
+        
+        {%- comment -%}If we hit the card limit during variant loop, stop processing more products{%- endcomment -%}
+        {%- if variant_loop_should_break -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- else -%}
+        {%- comment -%}If no color option, show as regular product card{%- endcomment -%}
+        {%- liquid
+          # Check if we've reached the card limit
+          unless max_cards_per_page and cards_rendered >= max_cards_per_page
+            render 'product-card', product: product, reveal: true, allow_highlight: allow_highlight, sizes: sizes, force_no_border: spotlight, section_color_scheme: section_color_scheme, prefix_id: prefix_id, position: forloop.index
+            assign cards_rendered = cards_rendered | plus: 1
+          endunless
+        -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- comment -%}Render product as a single card (default behavior){%- endcomment -%}
+      {%- liquid
+        # Check if we've reached the card limit
+        unless max_cards_per_page and cards_rendered >= max_cards_per_page
+          render 'product-card', product: product, reveal: true, allow_highlight: allow_highlight, sizes: sizes, force_no_border: spotlight, section_color_scheme: section_color_scheme, prefix_id: prefix_id, position: forloop.index
+          assign cards_rendered = cards_rendered | plus: 1
+        endunless
+      -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- if show_placeholder -%}
+      {%- for i in (1..4) -%}
+        {%- render 'product-card-placeholder', loop_index: i -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+</product-list>
+
+<style>
+  .image-collection-undertext-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
+    display: block;
+  }
+  
+  .image-collection-undertext-wrapper {
+    width: max-content;
+    display: flex;
+    animation: marquee 10s linear infinite;
+  }
+  
+  .image-collection-undertext-wrapper--static {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Text alignment for static text */
+  .image-collection-undertext-container[data-alignment="left"] .image-collection-undertext-wrapper--static {
+    justify-content: flex-start;
+  }
+  
+  .image-collection-undertext-container[data-alignment="center"] .image-collection-undertext-wrapper--static {
+    justify-content: center;
+  }
+  
+  .image-collection-undertext-container[data-alignment="right"] .image-collection-undertext-wrapper--static {
+    justify-content: flex-end;
+  }
+  
+  .image-collection-undertext {
+    color: black !important;
+    white-space: nowrap;
+    width: max-content;
+    padding-right: 7rem;
+    display: inline-block;
+  }
+  
+  /* Text sizes */
+  .image-collection-undertext--small {
+    font-size: 1.5rem !important;
+  }
+  
+  .image-collection-undertext--medium {
+    font-size: 2.25rem !important;
+  }
+  
+  .image-collection-undertext--large {
+    font-size: 3rem !important;
+  }
+  
+  .image-collection-undertext--extra_large {
+    font-size: 4rem !important;
+  }
+  
+  .image-collection-undertext-wrapper--static .image-collection-undertext {
+    padding-right: 0;
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Hotspot styles for collection page images */
+  .product-list__promo .hot-spot__dot svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .product-list__promo .hot-spot__dot--no-bg {
+    background: transparent;
+  }
+
+  .product-list__promo .hot-spot__dot--no-bg:after {
+    display: none;
+  }
+
+  .product-list__promo .hot-spot__dot--no-bg svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  .product-list__promo .hot-spot__dot--no-bg .hot-spot__number {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+</style>

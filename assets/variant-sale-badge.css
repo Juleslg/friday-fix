@@ -1,0 +1,133 @@
+/* =========================================================
+   Variant Sale Badge - kompakt und elegant
+   Basis + optionale Frame-Variante
+   Klappt ohne Rabatt vollständig ein (kein zusätzlicher Whitespace)
+   ========================================================= */
+
+/* Globale Stellschrauben */
+:root{
+  /* Basis */
+  --vsb-font-size: 11px;
+  --vsb-line-height: 1;
+  --vsb-letterspace: 0.10em;
+  --vsb-py: 8px;      /* vertikales Padding */
+  --vsb-px: 16px;     /* horizontales Padding */
+  --vsb-text: #111111;
+  --vsb-bg:   #F3ECE6;
+
+  /* Frame-Variante */
+  --vsb-h: 22px;           /* Innenhöhe der Box */
+  --vsb-bw: 4px;           /* Rahmenstärke */
+  --vsb-border: #E7DFD6;   /* Rahmenfarbe */
+
+  /* Runden */
+  --vsb-radius: 9999px; /* echte Pill-Form; bei Bedarf z.B. 16px */
+}
+
+/* Wrapper und optionale Ausrichtung */
+.vsb-wrap{
+  display: flex;
+  align-items: center;
+  margin-block: 0;            /* << kein Außenabstand per Default */
+}
+.vsb-align-left   { justify-content: flex-start; }
+.vsb-align-center { justify-content: center; }
+.vsb-align-right  { justify-content: flex-end; }
+
+/* Sichtbarer Außenabstand nur, wenn das Badge gezeigt wird */
+.vsb-wrap:has(.vsb-pill.vsb-show){
+  margin-block: 4px;
+}
+/* Fallback, falls ihr im JS eine Klasse setzt:
+   wrap.classList.add('vsb-visible') wenn sichtbar */
+.vsb-wrap.vsb-visible{
+  margin-block: 4px;
+}
+
+/* Basis-Badge */
+.vsb-pill{
+  /* << Per Default komplett aus dem Layout nehmen */
+  display: none;
+
+  align-items: center;
+  gap: 0; /* kein Zwischenraum zwischen den Spans */
+
+  padding-block: var(--vsb-py);
+  padding-inline: var(--vsb-px);
+
+  font-size: var(--vsb-font-size);
+  line-height: var(--vsb-line-height);
+  letter-spacing: var(--vsb-letterspace);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+
+  color: var(--vsb-text);
+  background: var(--vsb-bg);
+  border: none;
+  border-radius: var(--vsb-radius);
+  box-shadow: none;
+  white-space: nowrap;
+
+  opacity: 0;                 /* wird per JS/CSS-Klasse eingeblendet */
+  transition: opacity .14s ease;
+  overflow: hidden;           /* verhindert Artefakte an den Ecken */
+}
+
+/* sichtbar bei Rabatt */
+.vsb-pill.vsb-show{
+  display: inline-flex;       /* << nimmt wieder Platz ein */
+  opacity: 1;
+}
+
+/* Typografie-Feinschliff */
+.vsb-prefix{ margin-right: 6px; opacity: .9; }    /* Abstand vor der Zahl */
+.vsb-suffix{ margin-left: -0.03em; opacity: .9; } /* Zahl und % kleben eng */
+
+/* Optionale Frame-Variante: Box-Model Look */
+.vsb-pill.vsb-pill--frame{
+  /* Innenhöhe exakt steuerbar */
+  box-sizing: content-box;          /* height ist Innenhöhe */
+  height: var(--vsb-h);
+  padding-block: 0;
+  padding-inline: var(--vsb-px);
+
+  display: none;                    /* erbt Sichtbarkeitslogik */
+  align-items: center;
+
+  border: var(--vsb-bw) solid var(--vsb-border);
+  background: transparent;
+  border-radius: var(--vsb-radius);
+}
+
+/* Frame sichtbar nur bei Rabatt */
+.vsb-pill.vsb-pill--frame.vsb-show{
+  display: inline-flex;
+  opacity: 1;
+}
+
+/* Bewegungsreduktion */
+@media (prefers-reduced-motion: reduce){
+  .vsb-pill{ transition: none; }
+}
+
+/* Dark Mode neutral halten */
+@media (prefers-color-scheme: dark){
+  .vsb-pill{
+    color: var(--vsb-text);
+    background: var(--vsb-bg);
+  }
+}
+
+/* Leichte Verfeinerung mobil – NICHT verkleinern, eher gleich/etwas größer */
+@media (max-width: 480px){
+  :root{
+    --vsb-font-size: 12px;     /* vorher 10px -> besser lesbar */
+    --vsb-letterspace: 0.10em; /* wie Desktop */
+    --vsb-py: 8px;             /* wie Desktop */
+    --vsb-px: 16px;            /* wie Desktop */
+
+    /* Frame-Variante konsistent */
+    --vsb-h: 24px;             /* leicht höher auf Mobile */
+    --vsb-bw: 4px;
+  }
+}

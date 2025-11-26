@@ -1,0 +1,251 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    --hot-spot-background: {{ section.settings.hot_spot_background.rgb }};
+    --hot-spot-text-color: {{ section.settings.hot_spot_color.rgb }};
+    --hot-spot-size: {{ section.settings.hot_spot_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .hot-spot {
+    --hot-spot-dot-size: var(--hot-spot-size);
+    --hot-spot-dot-shadow-size: calc(var(--hot-spot-size) * 1.7);
+  }
+
+  #shopify-section-{{ section.id }} .hot-spot__dot svg {
+    width: {{ section.settings.hot_spot_icon_size }}px;
+    height: {{ section.settings.hot_spot_icon_size }}px;
+  }
+
+  #shopify-section-{{ section.id }} .hot-spot__number {
+    font-size: {{ section.settings.hot_spot_icon_size }}px;
+    font-weight: 700;
+    line-height: 1;
+    color: rgb(var(--hot-spot-text-color));
+  }
+
+  #shopify-section-{{ section.id }} .hot-spot__dot--no-bg {
+    background: transparent;
+  }
+
+  #shopify-section-{{ section.id }} .hot-spot__dot--no-bg:after {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .hot-spot__dot--no-bg svg {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  #shopify-section-{{ section.id }} .hot-spot__dot--no-bg .hot-spot__number {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+  <div class="content-box overflow-visible">
+    <div class="content-box__background-media">
+      {%- if section.settings.image != blank -%}
+        {%- render 'media' with section.settings.image, mobile_media: section.settings.mobile_image -%}
+      {%- else -%}
+        {{- 'hero-apparel-3' | placeholder_svg_tag: 'block' -}}
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.show_scrolling_title -%}
+      <div class="column-span-full align-self-center" {% if section.settings.lower_scrolling_text_layer %}style="order: -1"{% endif %}>
+        <marquee-text speed="0.3" direction="start-to-end" class="scrolling-content">
+          <div class="scrolling-content__item" style="font-size: var(--text-{{ section.settings.background_text_size }})">
+            <p class="scrolling-content__text text-ghost {{ section.settings.background_text_size }}">{{- section.settings.background_text -}}</p>
+          </div>
+        </marquee-text>
+      </div>
+    {%- else -%}
+      <div class="align-self-center" {% if section.settings.lower_scrolling_text_layer %}style="order: -1"{% endif %}>
+        <p class="scrolling-content__text text-ghost {{ section.settings.background_text_size }}">{{- section.settings.background_text -}}</p>
+      </div>
+    {%- endif -%}
+
+    {%- content_for 'blocks' -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.hot_spots.name",
+  "class": "shopify-section--hot-spots",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:global.image.image",
+      "info": "t:sections.hot_spots.image_size_recommendation"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:global.image.mobile_image",
+      "info": "t:sections.hot_spots.mobile_image_size_recommendation"
+    },
+    {
+      "type": "color",
+      "id": "hot_spot_background",
+      "label": "Hot spot background color",
+      "info": "Only applies to cross icon with background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "hot_spot_color",
+      "label": "Hot spot icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "hot_spot_size",
+      "label": "Hot spot dot size",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "hot_spot_icon_size",
+      "label": "Icon/number size",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "hot_spot_icon_style",
+      "label": "Hot spot style",
+      "options": [
+        {
+          "value": "cross",
+          "label": "Cross icon (with background)"
+        },
+        {
+          "value": "cross-no-bg",
+          "label": "Cross icon (no background)"
+        },
+        {
+          "value": "numbers-no-bg",
+          "label": "Numbers (no background)"
+        }
+      ],
+      "default": "cross"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.hot_spots.background_text"
+    },
+    {
+      "type": "text",
+      "id": "background_text",
+      "label": "t:global.text.text"
+    },
+    {
+      "type": "select",
+      "id": "background_text_size",
+      "label": "t:global.text.size",
+      "options": [
+        {
+          "value": "display-xl",
+          "label": "Display XL"
+        },
+        {
+          "value": "display-l",
+          "label": "Display L"
+        },
+        {
+          "value": "display-m",
+          "label": "Display M"
+        },
+        {
+          "value": "h1",
+          "label": "XX-Large"
+        },
+        {
+          "value": "h2",
+          "label": "X-Large"
+        },
+        {
+          "value": "h3",
+          "label": "Large"
+        }
+      ],
+      "default": "display-l"
+    },
+    {
+      "type": "checkbox",
+      "id": "lower_scrolling_text_layer",
+      "label": "t:sections.hot_spots.lower_scrolling_text_layer",
+      "info": "t:sections.hot_spots.lower_scrolling_text_layer_info",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scrolling_title",
+      "label": "t:blocks.section_header.show_scrolling_title",
+      "default": false
+    }
+  ],
+  "blocks": [
+    { "type": "_placeable-content" },
+    { "type": "_hot-spot-content-item" },
+    { "type": "_hot-spot-content-product" }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.hot_spots.name",
+      "category": "t:global.categories.storytelling",
+      "blocks": [
+        {
+          "type": "_placeable-content",
+          "blocks": [
+            {
+              "type": "heading",
+              "settings": {
+                "text": "Hot spots",
+                "heading_size": "h3"
+              }
+            }
+          ]
+        },
+        {
+          "type": "_hot-spot-content-item",
+          "settings": {
+            "mobile_horizontal_position": 40,
+            "mobile_vertical_position": 40,
+            "desktop_horizontal_position": 40,
+            "desktop_vertical_position": 40,
+            "title": "Hot spot 1"
+          }
+        },
+        {
+          "type": "_hot-spot-content-item",
+          "settings": {
+            "mobile_horizontal_position": 60,
+            "mobile_vertical_position": 60,
+            "desktop_horizontal_position": 60,
+            "desktop_vertical_position": 60,
+            "title": "Hot spot 2"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,1078 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
+    <div class="container section-spacing">
+      <div class="v-stack gap-8 sm:gap-10">
+        {%- comment -%}Section Header{%- endcomment -%}
+        {%- if section.settings.subheading != blank or section.settings.title != blank or section.settings.content != blank -%}
+          <div class="section-header section-header--stack justify-items-{{ section.settings.text_alignment | replace: 'left', 'start' | replace: 'right', 'end' }}">
+            <div class="prose prose-justify-{{ section.settings.text_alignment }}">
+              {%- render 'subheading', content: section.settings.subheading -%}
+              {%- render 'heading', content: section.settings.title, balance_text: true, style: section.settings.heading_size, html_tag: 'h2' -%}
+
+              {%- if section.settings.content != blank -%}
+                <div class="max-w-md">
+                  {{- section.settings.content -}}
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%}Tab System{%- endcomment -%}
+        <div class="onomates-tabs-header">
+          <onomates-tabs id="onomates-tabs-{{ section.id }}" role="tablist" class="onomates-tabs-header__tab-list {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} scroll-area bleed">
+            <template shadowrootmode="open">
+              <slot part="tab-list" name="tab"></slot>
+            </template>
+
+            {%- for block in section.blocks -%}
+              {%- capture tab_title -%}
+                {%- liquid
+                  assign icon_size_map = '{"sm": {"width": 16, "mobile_width": 12}, "md": {"width": 20, "mobile_width": 16}, "lg": {"width": 24, "mobile_width": 20}}'
+                  assign icon_sizes = icon_size_map | parse_json
+                  assign current_icon_size = icon_sizes[section.settings.icon_size] | default: icon_sizes.md
+                  assign tab_icon_width = current_icon_size.width
+                  assign tab_icon_mobile_width = current_icon_size.mobile_width
+                  assign custom_size = section.settings.custom_icon_size | default: 20
+                  assign custom_mobile_size = custom_size | times: 0.8 | round
+                -%}
+                {%- if section.settings.tabs_icon == 'custom' and section.settings.tabs_custom_icon != blank -%}
+                  {%- render 'icon', image: section.settings.tabs_custom_icon, width: custom_size, mobile_width: custom_mobile_size -%}
+                {%- elsif section.settings.tabs_icon == 'arrow' -%}
+                  {%- render 'icon' with 'big-arrow-right', stroke_width: 3, direction_aware: true -%}
+                {%- endif -%}
+
+                <span {% if section.blocks.size == 1 and section.settings.tabs_alignment == 'center' %}class="text-center"{% endif %}>
+                {%- case block.type -%}
+                  {%- when 'loyalty_table' -%}
+                    {{ block.settings.tab_title | default: section.settings.loyalty_tab_name | default: 'Loyalty Program' }}
+                  {%- when 'joy_app' -%}
+                    {{ block.settings.tab_title | default: section.settings.joy_tab_name | default: 'Joy: Ways To Earn' }}
+                  {%- when '@app' -%}
+                    {%- comment -%}For @app blocks, check if it's the second tab (index 1) to determine if it should use Joy tab name{%- endcomment -%}
+                    {%- if forloop.index == 2 -%}
+                      {{ block.settings.tab_title | default: section.settings.joy_tab_name | default: 'Joy: Ways To Earn' }}
+                    {%- else -%}
+                      {{ block.settings.tab_title | default: section.settings.dashboard_tab_name | default: 'Dashboard' }}
+                    {%- endif -%}
+                  {%- else -%}
+                    {{ block.settings.tab_title | default: 'Tab' }}
+                {%- endcase -%}
+                </span>
+              {%- endcapture -%}
+
+              {%- if section.blocks.size > 1-%}
+                <button class="onomates-tab-button h4 sm:h3 {% if section.settings.tabs_icon != 'none' %}text-indent text-indent--{{ section.settings.tabs_icon }}{% endif %}" role="tab" slot="tab" aria-controls="onomates-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>
+                  {{- tab_title -}}
+                </button>
+              {%- else -%}
+                <div class="onomates-tab-button h4 sm:h3 {% if section.settings.tabs_icon != 'none' %}text-indent text-indent--{{ section.settings.tabs_icon }}{% endif %}" role="tab" slot="tab" aria-selected="true" {{ block.shopify_attributes }}>
+                  {{- tab_title -}}
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </onomates-tabs>
+
+          <div class="onomates-tabs-mobile-nav">
+            <button type="button" class="products-with-image__carousel-arrow tap-area onomates-tabs-mobile-nav__btn onomates-tabs-mobile-nav__btn--prev" data-onomates-nav="prev" aria-label="Previous tab" disabled>
+              <span class="sr-only">Previous</span>
+              {%- render 'icon' with 'big-arrow-left', width: 16, direction_aware: true -%}
+            </button>
+            
+            <div class="onomates-tabs-mobile-nav__title">
+              {%- comment -%}The active tab title will be moved here via CSS{%- endcomment -%}
+            </div>
+            
+            <button type="button" class="products-with-image__carousel-arrow tap-area onomates-tabs-mobile-nav__btn onomates-tabs-mobile-nav__btn--next" data-onomates-nav="next" aria-label="Next tab">
+              <span class="sr-only">Next</span>
+              {%- render 'icon' with 'big-arrow-right', width: 16, direction_aware: true -%}
+            </button>
+          </div>
+        </div>
+
+        {%- comment -%}Tab Content{%- endcomment -%}
+        <div class="onomates-tabs-content">
+          {%- for block in section.blocks -%}
+            <div id="onomates-{{ block.id }}" class="onomates-tab-panel v-stack {% if section.settings.tabs_alignment == 'center' %}justify-items-center{% endif %} gap-8 sm:gap-12" {% unless forloop.first %}hidden{% endunless %}>
+              {%- case block.type -%}
+                {%- when 'loyalty_table' -%}
+                  {%- if block.settings.side_image != blank -%}
+                    {%- assign _image_side = block.settings.image_position | default: 'right' -%}
+                    {%- assign _image_size = block.settings.image_size | default: 'm' -%}
+                    <div class="onomates-tab-layout onomates-tab-layout--{{ _image_side }} onomates-tab-layout--size-{{ _image_size }}">
+                      {%- if _image_side == 'left' -%}
+                        <figure class="onomates-tab-layout__image">
+                          {%- assign _desktop_img = block.settings.side_image -%}
+                          {%- assign _mobile_img = block.settings.mobile_side_image -%}
+                          <picture>
+                            {%- if _mobile_img != blank -%}
+                              <source media="(max-width: 699px)" srcset="{{ _mobile_img | image_url: width: 800 }}">
+                            {%- endif -%}
+                            <img src="{{ _desktop_img | image_url: width: 1200 }}" alt="{{ _desktop_img.alt | default: '' }}" loading="lazy" sizes="(min-width: 1000px) 520px, 100vw" class="w-full h-auto">
+                          </picture>
+                        </figure>
+                      {%- endif -%}
+
+                      <div class="onomates-tab-layout__content">
+                        {%- render '_loyalty-table', block: block -%}
+                      </div>
+
+                      {%- if _image_side == 'right' -%}
+                        <figure class="onomates-tab-layout__image">
+                          {%- assign _desktop_img = block.settings.side_image -%}
+                          {%- assign _mobile_img = block.settings.mobile_side_image -%}
+                          <picture>
+                            {%- if _mobile_img != blank -%}
+                              <source media="(max-width: 699px)" srcset="{{ _mobile_img | image_url: width: 800 }}">
+                            {%- endif -%}
+                            <img src="{{ _desktop_img | image_url: width: 1200 }}" alt="{{ _desktop_img.alt | default: '' }}" loading="lazy" sizes="(min-width: 1000px) 520px, 100vw" class="w-full h-auto">
+                          </picture>
+                        </figure>
+                      {%- endif -%}
+                    </div>
+                  {%- else -%}
+                    {%- render '_loyalty-table', block: block -%}
+                  {%- endif -%}
+                {%- when 'joy_app' -%}
+                  <div class="onomates-joy-app">
+                    <div class="joy-app-container">
+                      <div class="joy-app-icon">
+                        <div class="joy-app-icon__gradient">
+                          <span class="joy-app-icon__text">Joy</span>
+                        </div>
+                      </div>
+                      <div class="joy-app-content">
+                        <h3 class="joy-app-title">Joy: Ways To Earn</h3>
+                        <p class="joy-app-description">{{ block.settings.description | default: 'Discover exciting ways to earn rewards and unlock exclusive benefits with our Joy loyalty program.' }}</p>
+                        {%- if block.settings.button_text != blank -%}
+                          <a href="{{ block.settings.button_url | default: '#' }}" class="joy-app-button">
+                            {{ block.settings.button_text }}
+                          </a>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  </div>
+                {%- when '@app' -%}
+                  {%- if customer -%}
+                    <div class="onomates-app-block">
+                      {%- render block -%}
+                      {%- comment -%}Fallback content if no app content is rendered{%- endcomment -%}
+                      <div class="onomates-app-placeholder" style="display: none;">
+                        <p>App content will appear here when you install compatible apps.</p>
+                      </div>
+                    </div>
+                  {%- else -%}
+                    {%- comment -%}Show login prompt for @app blocks when customer is not logged in{%- endcomment -%}
+                    {%- assign is_dashboard_tab = false -%}
+                    {%- assign is_ways_to_earn_tab = false -%}
+                    {%- if forloop.index == 1 -%}
+                      {%- assign is_dashboard_tab = true -%}
+                    {%- elsif forloop.index == 2 -%}
+                      {%- assign is_ways_to_earn_tab = true -%}
+                    {%- endif -%}
+                    <div class="onomates-login-message">
+                      <p>{{ section.settings.login_message_text | default: 'BEREITS ONOMATE?' }}</p>
+                      <a href="{{ routes.account_login_url }}">{{ section.settings.login_button_text | default: 'anmelden' }}</a>
+                    </div>
+                  {%- endif -%}
+                {%- else -%}
+                  <div class="onomates-custom-block">
+                    {%- render block -%}
+                  </div>
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+
+.Joy-WayEarn__List {
+  width: 70%;
+}
+
+.Joy__Way-To-Earn {
+  padding: 0rem;
+}
+
+.Joy-LineClamp {
+  display: none;
+}
+
+  .Joy-Account__Dashboard {
+    margin-top: 0 !important;
+  }
+  
+  .onomates-login-message {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: inherit;
+    border-radius: 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .onomates-login-message p {
+    margin: 0;
+    color: #000000;
+    font-size: 1.125rem;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: 0.025em;
+  }
+  
+  .onomates-login-message a {
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 0.75rem 2rem;
+    border-radius: var(--button-border-radius);
+    font-size: var(--button-font-size);
+    letter-spacing: 0.025em;
+    transition: background-color 0.2s ease;
+    display: inline-block;
+  }
+  
+  .onomates-login-message a:hover {
+    background-color: #333333;
+    text-decoration: none;
+  }
+  
+  .onomates-joy-app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background-color: var(--color-background, #ffffff);
+    border-radius: 12px;
+    border: 1px solid var(--color-border, #e1e3e5);
+  }
+  
+  .joy-app-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .joy-app-icon {
+    flex-shrink: 0;
+  }
+  
+  .joy-app-icon__gradient {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #8b5cf6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .joy-app-icon__text {
+    color: white;
+    font-weight: 600;
+    font-size: 1.25rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    letter-spacing: -0.025em;
+  }
+  
+  .joy-app-content {
+    flex: 1;
+  }
+  
+  .joy-app-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-foreground, #1f2937);
+    margin: 0 0 0.5rem 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .joy-app-description {
+    color: var(--color-foreground-secondary, #6b7280);
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+  }
+  
+  .joy-app-button {
+    display: inline-block;
+    background-color: var(--color-button, #3b82f6);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  
+  .joy-app-button:hover {
+    background-color: var(--color-button-hover, #2563eb);
+    text-decoration: none;
+  }
+  
+  @media (max-width: 640px) {
+    .joy-app-container {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+    
+    .joy-app-icon__gradient {
+      width: 64px;
+      height: 64px;
+    }
+    
+    .joy-app-icon__text {
+      font-size: 1rem;
+    }
+    
+    .joy-app-title {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+{%- comment -%}Hide first dynamic grid and second text-with-media sections for logged-in customers{%- endcomment -%}
+{%- if customer -%}
+<style>
+  [id*="dynamic_grid"]:nth-of-type(1),
+  .shopify-section--text-with-media:nth-of-type(2) {
+    display: none !important;
+  }
+</style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Onomates Tab",
+  "class": "shopify-section--onomates-tab",
+  "max_blocks": 10,
+  "tag": "section",
+  "disabled_on": {
+    "templates": ["password"],
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:global.colors.scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "t:global.text.subheading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:global.text.heading",
+      "default": "Onomates Features"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:global.text.heading_size",
+      "options": [
+        {
+          "value": "display-xl",
+          "label": "Display XL"
+        },
+        {
+          "value": "display-l",
+          "label": "Display L"
+        },
+        {
+          "value": "display-m",
+          "label": "Display M"
+        },
+        {
+          "value": "h1",
+          "label": "XX-Large"
+        },
+        {
+          "value": "h2",
+          "label": "X-Large"
+        },
+        {
+          "value": "h3",
+          "label": "Large"
+        },
+        {
+          "value": "h4",
+          "label": "Medium"
+        },
+        {
+          "value": "h5",
+          "label": "Small"
+        },
+        {
+          "value": "h6",
+          "label": "X-Small"
+        },
+        {
+          "value": "h7",
+          "label": "XX-Small"
+        }
+      ],
+      "default": "h3"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:global.text.content"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Tabs"
+    },
+    {
+      "type": "select",
+      "id": "tabs_alignment",
+      "label": "Tab alignment",
+      "options": [
+        {
+          "value": "start",
+          "label": "t:global.position.left"
+        },
+        {
+          "value": "center",
+          "label": "t:global.position.center"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "tabs_icon",
+      "label": "Tab icon",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "arrow",
+          "label": "Arrow"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "diamond",
+          "label": "Diamond"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "image_picker",
+      "id": "tabs_custom_icon",
+      "label": "Custom tab icon",
+      "info": "Used when Tab icon is set to Custom"
+    },
+    {
+      "type": "range",
+      "id": "custom_icon_size",
+      "label": "Custom icon size (px)",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "default": 20,
+      "info": "Controls size of all custom uploaded icons in pixels"
+    },
+    {
+      "type": "select",
+      "id": "icon_size",
+      "label": "Predefined icon size",
+      "options": [
+        {"value": "sm", "label": "Small"},
+        {"value": "md", "label": "Medium"},
+        {"value": "lg", "label": "Large"}
+      ],
+      "default": "md",
+      "info": "Controls size of predefined icons (tab icons, perk icons, attribute icons)"
+    },
+    {
+      "type": "header",
+      "content": "Tab Names"
+    },
+    {
+      "type": "text",
+      "id": "loyalty_tab_name",
+      "label": "Loyalty Table tab name",
+      "default": "Loyalty Program",
+      "info": "Override the default name for the Loyalty Table tab"
+    },
+    {
+      "type": "text",
+      "id": "joy_tab_name",
+      "label": "Joy App tab name",
+      "default": "Joy: Ways To Earn",
+      "info": "Override the default name for the Joy App tab"
+    },
+    {
+      "type": "text",
+      "id": "dashboard_tab_name",
+      "label": "Dashboard tab name",
+      "default": "Dashboard",
+      "info": "Override the default name for the Dashboard tab"
+    },
+    {
+      "type": "header",
+      "content": "Login Messages"
+    },
+    {
+      "type": "text",
+      "id": "login_message_text",
+      "label": "Login message text",
+      "default": "BEREITS ONOMATE?",
+      "info": "Text displayed when user is not logged in"
+    },
+    {
+      "type": "text",
+      "id": "login_button_text",
+      "label": "Login button text",
+      "default": "anmelden",
+      "info": "Text for the login button"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "loyalty_table",
+      "name": "Loyalty Table",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Side image"
+        },
+        {
+          "type": "image_picker",
+          "id": "side_image",
+          "label": "Side image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_side_image",
+          "label": "Mobile side image",
+          "info": "Optional. Overrides side image on screens < 700px."
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "options": [
+            {"value": "left", "label": "Left"},
+            {"value": "right", "label": "Right"}
+          ],
+          "default": "right"
+        },
+        {
+          "type": "select",
+          "id": "image_size",
+          "label": "Image size",
+          "options": [
+            {"value": "xs", "label": "XS"},
+            {"value": "s", "label": "S"},
+            {"value": "m", "label": "M"},
+            {"value": "l", "label": "L"},
+            {"value": "xl", "label": "XL"}
+          ],
+          "default": "m"
+        },
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab title",
+          "default": "Loyalty Program"
+        },
+        {
+          "type": "text",
+          "id": "perks_header",
+          "label": "Perks header",
+          "default": "DEINE VORTEILE"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_footnotes",
+          "label": "Show footnotes",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Tiers"
+        },
+        {
+          "type": "text",
+          "id": "tier_1_name",
+          "label": "Tier 1 name",
+          "default": "CONFIRMED"
+        },
+        {
+          "type": "text",
+          "id": "tier_1_subtitle",
+          "label": "Tier 1 subtitle",
+          "default": "Ab 0 Punkte"
+        },
+        {
+          "type": "image_picker",
+          "id": "tier_1_icon",
+          "label": "Tier 1 icon"
+        },
+        {
+          "type": "text",
+          "id": "tier_2_name",
+          "label": "Tier 2 name",
+          "default": "BUDDY"
+        },
+        {
+          "type": "text",
+          "id": "tier_2_subtitle",
+          "label": "Tier 2 subtitle",
+          "default": "Ab 250 Punkte"
+        },
+        {
+          "type": "image_picker",
+          "id": "tier_2_icon",
+          "label": "Tier 2 icon"
+        },
+        {
+          "type": "text",
+          "id": "tier_3_name",
+          "label": "Tier 3 name",
+          "default": "FRIEND"
+        },
+        {
+          "type": "text",
+          "id": "tier_3_subtitle",
+          "label": "Tier 3 subtitle",
+          "default": "Ab 500 Punkte"
+        },
+        {
+          "type": "image_picker",
+          "id": "tier_3_icon",
+          "label": "Tier 3 icon"
+        },
+        {
+          "type": "text",
+          "id": "tier_4_name",
+          "label": "Tier 4 name",
+          "default": "BEST MATE"
+        },
+        {
+          "type": "text",
+          "id": "tier_4_subtitle",
+          "label": "Tier 4 subtitle",
+          "default": "Ab 1.000 punkte"
+        },
+        {
+          "type": "image_picker",
+          "id": "tier_4_icon",
+          "label": "Tier 4 icon"
+        },
+        {
+          "type": "header",
+          "content": "Perks"
+        },
+        {
+          "type": "text",
+          "id": "perk_1_name",
+          "label": "Perk 1 name",
+          "default": "Einmaliges Willkommensgeschenk*"
+        },
+        {
+          "type": "select",
+          "id": "perk_1_icon",
+          "label": "Perk 1 icon",
+          "options": [
+            {"value": "none", "label": "None"},
+            {"value": "picto-truck", "label": "Truck"},
+            {"value": "picto-express-delivery", "label": "Express delivery"},
+            {"value": "picto-gift-box", "label": "Gift box"},
+            {"value": "picto-discount-badge", "label": "Discount badge"},
+            {"value": "picto-loyalty-points", "label": "Loyalty points"},
+            {"value": "picto-star", "label": "Star"},
+            {"value": "picto-heart", "label": "Heart"}
+          ],
+          "default": "picto-truck"
+        },
+        {
+          "type": "image_picker",
+          "id": "perk_1_custom_icon",
+          "label": "Perk 1 custom icon"
+        },
+        {
+          "type": "text",
+          "id": "perk_1_tier_1",
+          "label": "Perk 1 - Tier 1 value",
+          "default": "10€"
+        },
+        {
+          "type": "text",
+          "id": "perk_1_tier_2",
+          "label": "Perk 1 - Tier 2 value",
+          "default": "-20%"
+        },
+        {
+          "type": "text",
+          "id": "perk_1_tier_3",
+          "label": "Perk 1 - Tier 3 value",
+          "default": "-25%"
+        },
+        {
+          "type": "text",
+          "id": "perk_1_tier_4",
+          "label": "Perk 1 - Tier 4 value",
+          "default": "-30%"
+        },
+        {
+          "type": "text",
+          "id": "perk_2_name",
+          "label": "Perk 2 name",
+          "default": "Early Access - Less Waste Sale Online Edition"
+        },
+        {
+          "type": "select",
+          "id": "perk_2_icon",
+          "label": "Perk 2 icon",
+          "options": [
+            {"value": "none", "label": "None"},
+            {"value": "picto-truck", "label": "Truck"},
+            {"value": "picto-express-delivery", "label": "Express delivery"},
+            {"value": "picto-gift-box", "label": "Gift box"},
+            {"value": "picto-discount-badge", "label": "Discount badge"},
+            {"value": "picto-loyalty-points", "label": "Loyalty points"},
+            {"value": "picto-star", "label": "Star"},
+            {"value": "picto-heart", "label": "Heart"}
+          ],
+          "default": "picto-star"
+        },
+        {
+          "type": "image_picker",
+          "id": "perk_2_custom_icon",
+          "label": "Perk 2 custom icon"
+        },
+        {
+          "type": "text",
+          "id": "perk_2_tier_1",
+          "label": "Perk 2 - Tier 1 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_2_tier_2",
+          "label": "Perk 2 - Tier 2 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_2_tier_3",
+          "label": "Perk 2 - Tier 3 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_2_tier_4",
+          "label": "Perk 2 - Tier 4 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_3_name",
+          "label": "Perk 3 name",
+          "default": "Early Access - Neue Releases"
+        },
+        {
+          "type": "select",
+          "id": "perk_3_icon",
+          "label": "Perk 3 icon",
+          "options": [
+            {"value": "none", "label": "None"},
+            {"value": "picto-truck", "label": "Truck"},
+            {"value": "picto-express-delivery", "label": "Express delivery"},
+            {"value": "picto-gift-box", "label": "Gift box"},
+            {"value": "picto-discount-badge", "label": "Discount badge"},
+            {"value": "picto-loyalty-points", "label": "Loyalty points"},
+            {"value": "picto-star", "label": "Star"},
+            {"value": "picto-heart", "label": "Heart"}
+          ],
+          "default": "picto-gift-box"
+        },
+        {
+          "type": "image_picker",
+          "id": "perk_3_custom_icon",
+          "label": "Perk 3 custom icon"
+        },
+        {
+          "type": "text",
+          "id": "perk_3_tier_1",
+          "label": "Perk 3 - Tier 1 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_3_tier_2",
+          "label": "Perk 3 - Tier 2 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_3_tier_3",
+          "label": "Perk 3 - Tier 3 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_3_tier_4",
+          "label": "Perk 3 - Tier 4 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_4_name",
+          "label": "Perk 4 name",
+          "default": "Early access - Online Sales"
+        },
+        {
+          "type": "select",
+          "id": "perk_4_icon",
+          "label": "Perk 4 icon",
+          "options": [
+            {"value": "none", "label": "None"},
+            {"value": "picto-truck", "label": "Truck"},
+            {"value": "picto-express-delivery", "label": "Express delivery"},
+            {"value": "picto-gift-box", "label": "Gift box"},
+            {"value": "picto-discount-badge", "label": "Discount badge"},
+            {"value": "picto-loyalty-points", "label": "Loyalty points"},
+            {"value": "picto-star", "label": "Star"},
+            {"value": "picto-heart", "label": "Heart"}
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "perk_4_custom_icon",
+          "label": "Perk 4 custom icon"
+        },
+        {
+          "type": "text",
+          "id": "perk_4_tier_1",
+          "label": "Perk 4 - Tier 1 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_4_tier_2",
+          "label": "Perk 4 - Tier 2 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_4_tier_3",
+          "label": "Perk 4 - Tier 3 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_4_tier_4",
+          "label": "Perk 4 - Tier 4 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_5_name",
+          "label": "Perk 5 name",
+          "default": "Geburtstagsgeschenk"
+        },
+        {
+          "type": "select",
+          "id": "perk_5_icon",
+          "label": "Perk 5 icon",
+          "options": [
+            {"value": "none", "label": "None"},
+            {"value": "picto-truck", "label": "Truck"},
+            {"value": "picto-express-delivery", "label": "Express delivery"},
+            {"value": "picto-gift-box", "label": "Gift box"},
+            {"value": "picto-discount-badge", "label": "Discount badge"},
+            {"value": "picto-loyalty-points", "label": "Loyalty points"},
+            {"value": "picto-star", "label": "Star"},
+            {"value": "picto-heart", "label": "Heart"}
+          ],
+          "default": "none"
+        },
+        {
+          "type": "image_picker",
+          "id": "perk_5_custom_icon",
+          "label": "Perk 5 custom icon"
+        },
+        {
+          "type": "text",
+          "id": "perk_5_tier_1",
+          "label": "Perk 5 - Tier 1 value",
+          "default": "false"
+        },
+        {
+          "type": "text",
+          "id": "perk_5_tier_2",
+          "label": "Perk 5 - Tier 2 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_5_tier_3",
+          "label": "Perk 5 - Tier 3 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_5_tier_4",
+          "label": "Perk 5 - Tier 4 value",
+          "default": "true"
+        },
+        {
+          "type": "text",
+          "id": "perk_6_name",
+          "label": "Perk 6 name",
+          "default": "Kostenloser Versand*"
+        },
+        {
+          "type": "select",
+          "id": "perk_6_icon",
+          "label": "Perk 6 icon",
+          "options": [
+            {"value": "none", "label": "None"},
+            {"value": "picto-truck", "label": "Truck"},
+            {"value": "picto-express-delivery", "label": "Express delivery"},
+            {"value": "picto-gift-box", "label": "Gift box"},
+            {"value": "picto-discount-badge", "label": "Discount badge"},
+            {"value": "picto-loyalty-points", "label": "Loyalty points"},
+            {"value": "picto-star", "label": "Star"},
+            {"value": "picto-heart", "label": "Heart"}
+          ],
+          "default": "picto-truck"
+        },
+        {
+          "type": "image_picker",
+          "id": "perk_6_custom_icon",
+          "label": "Perk 6 custom icon"
+        },
+        {
+          "type": "text",
+          "id": "perk_6_tier_1",
+          "label": "Perk 6 - Tier 1 value",
+          "default": "false"
+        },
+        {
+          "type": "text",
+          "id": "perk_6_tier_2",
+          "label": "Perk 6 - Tier 2 value",
+          "default": "false"
+        },
+        {
+          "type": "text",
+          "id": "perk_6_tier_3",
+          "label": "Perk 6 - Tier 3 value",
+          "default": "5x"
+        },
+        {
+          "type": "text",
+          "id": "perk_6_tier_4",
+          "label": "Perk 6 - Tier 4 value",
+          "default": "true"
+        }
+      ]
+    },
+    {
+      "type": "joy_app",
+      "name": "Joy App",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab title",
+          "default": "Joy: Ways To Earn"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Discover exciting ways to earn rewards and unlock exclusive benefits with our Joy loyalty program.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Onomates Tab",
+      "category": "t:global.categories.content",
+      "blocks": [
+        {
+          "type": "loyalty_table"
+        },
+        {
+          "type": "joy_app"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

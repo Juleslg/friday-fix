@@ -1,0 +1,91 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+CUSTOM BUTTON SNIPPET - Accordion Style
+----------------------------------------------------------------------------------------------------------------------
+
+This snippet renders a custom button that looks exactly like an accordion/collapsible tab
+but functions as a link to products or collections based on metafields.
+
+********************************************
+Supported variables
+********************************************
+
+* block: the block object containing settings and context
+{%- endcomment -%}
+
+{% assign linked_product = product.metafields.custom.linked_product.value %}
+{% assign linked_collection = product.metafields.custom.linked_collection.value %}
+{% assign fallback_link = product.metafields.custom.set_link %}
+
+{% if linked_product != blank or linked_collection != blank or fallback_link != blank %}
+  {% comment %}
+    This button automatically links to either:
+    1. Another product (using product reference metafield)
+    2. A collection (using collection reference metafield)
+    
+    It will use whichever metafield is not empty, with product taking priority if both are set.
+    
+    Metafields should be set up as:
+    - Namespace: custom
+    - Key: linked_product (product reference type)
+    - Key: linked_collection (collection reference type)
+    - Key: set_link (single line text/URL type)
+  {% endcomment %}
+  
+  {% assign button_url = '' %}
+  {% if linked_product != blank %}
+    {% assign button_url = linked_product.url %}
+  {% elsif linked_collection != blank %}
+    {% assign button_url = linked_collection.url %}
+  {% elsif fallback_link != blank %}
+    {% assign button_url = fallback_link %}
+  {% endif %}
+
+  {% if button_url != blank %}
+    <accordion-disclosure class="accordion custom-button-accordion">
+      <a href="{{ button_url }}" class="accordion__summary custom-button-link">
+        <span class="custom-button-text">{{ block.settings.button_text }}</span>
+        {%- render 'icon' with 'accordion-small-arrow' -%}
+      </a>
+    </accordion-disclosure>
+  {% endif %}
+{% endif %}
+
+<style>
+  .custom-button-link {
+    text-decoration: none;
+    color: inherit;
+    padding: var(--accordion-block-padding) var(--accordion-inline-padding);
+    justify-content: space-between;
+    align-items: center;
+    column-gap: .75rem;
+    transition: color .2s;
+    display: flex;
+    width: 100%;
+  }
+  
+  .custom-button-link:hover {
+    color: rgb(var(--text-color));
+  }
+  
+  .custom-button-link .icon-accordion-small-arrow {
+    flex-shrink: 0;
+    transform: rotate(-90deg);
+    transition: transform .3s ease-in-out;
+  }
+  
+  .custom-button-text {
+    font: var(--text-font-style) var(--text-font-weight) var(--text-base) / var(--text-line-height) var(--text-font-family);
+    text-transform: var(--text-transform);
+    letter-spacing: var(--text-letter-spacing);
+    {% if block.settings.text_color != blank %}
+      color: {{ block.settings.text_color }} !important;
+    {% endif %}
+  }
+  
+  @media screen and (min-width: 700px) {
+    .custom-button-accordion {
+      --accordion-block-padding: 1.25rem;
+    }
+  }
+</style>

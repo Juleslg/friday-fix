@@ -1,0 +1,394 @@
+<div class="loyalty-table-wrapper" {{ block.shopify_attributes }}>
+  <!-- Desktop Table Layout -->
+  <table class="loyalty-table loyalty-table--desktop">
+    <thead> 
+      <tr>
+        <th class="loyalty-table__header">{{ block.settings.perks_header | default: 'YOUR BENEFITS' }}</th>
+        <th class="loyalty-table__header loyalty-table__tier-header">
+          <div class="loyalty-tier">
+            {%- if block.settings.tier_1_icon != blank -%}
+              {%- render 'icon', image: block.settings.tier_1_icon, width: 24, mobile_width: 20 -%}
+            {%- endif -%}
+            <span class="loyalty-tier__name">{{ block.settings.tier_1_name }}</span>
+            {%- if block.settings.tier_1_subtitle != blank -%}
+              <span class="loyalty-tier__subtitle">{{ block.settings.tier_1_subtitle }}</span>
+            {%- endif -%}
+          </div>
+        </th>
+        <th class="loyalty-table__header loyalty-table__tier-header">
+          <div class="loyalty-tier">
+            {%- if block.settings.tier_2_icon != blank -%}
+              {%- render 'icon', image: block.settings.tier_2_icon, width: 24, mobile_width: 20 -%}
+            {%- endif -%}
+            <span class="loyalty-tier__name">{{ block.settings.tier_2_name }}</span>
+            {%- if block.settings.tier_2_subtitle != blank -%}
+              <span class="loyalty-tier__subtitle">{{ block.settings.tier_2_subtitle }}</span>
+            {%- endif -%}
+          </div>
+        </th>
+        <th class="loyalty-table__header loyalty-table__tier-header">
+          <div class="loyalty-tier">
+            {%- if block.settings.tier_3_icon != blank -%}
+              {%- render 'icon', image: block.settings.tier_3_icon, width: 24, mobile_width: 20 -%}
+            {%- endif -%}
+            <span class="loyalty-tier__name">{{ block.settings.tier_3_name }}</span>
+            {%- if block.settings.tier_3_subtitle != blank -%}
+              <span class="loyalty-tier__subtitle">{{ block.settings.tier_3_subtitle }}</span>
+            {%- endif -%}
+          </div>
+        </th>
+        <th class="loyalty-table__header loyalty-table__tier-header">
+          <div class="loyalty-tier">
+            {%- if block.settings.tier_4_icon != blank -%}
+              {%- render 'icon', image: block.settings.tier_4_icon, width: 24, mobile_width: 20 -%}
+            {%- endif -%}
+            <span class="loyalty-tier__name">{{ block.settings.tier_4_name }}</span>
+            {%- if block.settings.tier_4_subtitle != blank -%}
+              <span class="loyalty-tier__subtitle">{{ block.settings.tier_4_subtitle }}</span>
+            {%- endif -%}
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="divide-y">
+      {%- liquid
+        assign icon_size_map = '{"sm": {"width": 16, "mobile_width": 12}, "md": {"width": 20, "mobile_width": 16}, "lg": {"width": 24, "mobile_width": 20}}'
+        assign icon_sizes = icon_size_map | parse_json
+        assign current_icon_size = icon_sizes[section.settings.icon_size] | default: icon_sizes.md
+        assign perk_icon_width = current_icon_size.width
+        assign perk_icon_mobile_width = current_icon_size.mobile_width
+        assign custom_size = section.settings.custom_icon_size | default: 20
+        assign custom_mobile_size = custom_size | times: 0.8 | round
+      -%}
+      
+      {%- for i in (1..6) -%}
+        {%- assign perk_name = 'perk_' | append: i | append: '_name' -%}
+        {%- assign perk_icon = 'perk_' | append: i | append: '_icon' -%}
+        {%- assign perk_custom_icon = 'perk_' | append: i | append: '_custom_icon' -%}
+        {%- assign perk_tier_1 = 'perk_' | append: i | append: '_tier_1' -%}
+        {%- assign perk_tier_2 = 'perk_' | append: i | append: '_tier_2' -%}
+        {%- assign perk_tier_3 = 'perk_' | append: i | append: '_tier_3' -%}
+        {%- assign perk_tier_4 = 'perk_' | append: i | append: '_tier_4' -%}
+        
+        {%- if block.settings[perk_name] != blank -%}
+          <tr class="loyalty-table__row">
+            <td class="loyalty-table__perk-name">
+              <div class="text-with-icon">
+                {%- if block.settings[perk_custom_icon] != blank -%}
+                  {%- render 'icon', image: block.settings[perk_custom_icon], width: custom_size, mobile_width: custom_mobile_size -%}
+                {%- elsif block.settings[perk_icon] != 'none' -%}
+                  {%- render 'icon' with block.settings[perk_icon], width: perk_icon_width, mobile_width: perk_icon_mobile_width -%}
+                {%- endif -%}
+                {{ block.settings[perk_name] }}
+              </div>
+            </td>
+            <td class="loyalty-table__perk-value">
+              {%- if block.settings[perk_tier_1] == 'true' -%}
+                <div class="loyalty-check">
+                  {%- render 'icon' with 'success-checkmark', width: 16, mobile_width: 14 -%}
+                  <span class="sr-only">Included</span>
+                </div>
+              {%- elsif block.settings[perk_tier_1] == 'false' -%}
+                <div class="loyalty-cross">
+                  <span>—</span>
+                  <span class="sr-only">Not included</span>
+                </div>
+              {%- else -%}
+                <span class="loyalty-value">{{ block.settings[perk_tier_1] }}</span>
+              {%- endif -%}
+            </td>
+            <td class="loyalty-table__perk-value">
+              {%- if block.settings[perk_tier_2] == 'true' -%}
+                <div class="loyalty-check">
+                  {%- render 'icon' with 'success-checkmark', width: 16, mobile_width: 14 -%}
+                  <span class="sr-only">Included</span>
+                </div>
+              {%- elsif block.settings[perk_tier_2] == 'false' -%}
+                <div class="loyalty-cross">
+                  <span>—</span>
+                  <span class="sr-only">Not included</span>
+                </div>
+              {%- else -%}
+                <span class="loyalty-value">{{ block.settings[perk_tier_2] }}</span>
+              {%- endif -%}
+            </td>
+            <td class="loyalty-table__perk-value">
+              {%- if block.settings[perk_tier_3] == 'true' -%}
+                <div class="loyalty-check">
+                  {%- render 'icon' with 'success-checkmark', width: 16, mobile_width: 14 -%}
+                  <span class="sr-only">Included</span>
+                </div>
+              {%- elsif block.settings[perk_tier_3] == 'false' -%}
+                <div class="loyalty-cross">
+                  <span>—</span>
+                  <span class="sr-only">Not included</span>
+                </div>
+              {%- else -%}
+                <span class="loyalty-value">{{ block.settings[perk_tier_3] }}</span>
+              {%- endif -%}
+            </td>
+            <td class="loyalty-table__perk-value">
+              {%- if block.settings[perk_tier_4] == 'true' -%}
+                <div class="loyalty-check">
+                  {%- render 'icon' with 'success-checkmark', width: 16, mobile_width: 14 -%}
+                  <span class="sr-only">Included</span>
+                </div>
+              {%- elsif block.settings[perk_tier_4] == 'false' -%}
+                <div class="loyalty-cross">
+                  <span>—</span>
+                  <span class="sr-only">Not included</span>
+                </div>
+              {%- else -%}
+                <span class="loyalty-value">{{ block.settings[perk_tier_4] }}</span>
+              {%- endif -%}
+            </td>
+          </tr>
+        {%- endif -%}
+      {%- endfor -%}
+    </tbody>
+  </table>
+  
+  <!-- Mobile Single Card Layout -->
+  <div class="loyalty-mobile">
+    <div class="loyalty-mobile__card" data-tier="1">
+      <div class="loyalty-mobile__header">
+        <h3 class="loyalty-mobile__tier-name">{{ block.settings.tier_1_name }}</h3>
+        {%- if block.settings.tier_1_subtitle != blank -%}
+          <p class="loyalty-mobile__tier-subtitle">{{ block.settings.tier_1_subtitle }}</p>
+        {%- endif -%}
+      </div>
+      
+      <div class="loyalty-mobile__perks">
+        {%- for i in (1..6) -%}
+          {%- assign perk_name = 'perk_' | append: i | append: '_name' -%}
+          {%- assign perk_tier_value = 'perk_' | append: i | append: '_tier_1' -%}
+          
+          {%- if block.settings[perk_name] != blank -%}
+            <div class="loyalty-mobile__perk">
+              <div class="loyalty-mobile__perk-name">
+                {{ block.settings[perk_name] }}
+                {%- if block.settings[perk_name] contains '*' -%}
+                  <div class="loyalty-mobile__footnote">*Sets und Gutscheine ausgeschlossen</div>
+                {%- elsif block.settings[perk_name] contains 'Versand' and block.settings[perk_name] contains '*' -%}
+                  <div class="loyalty-mobile__footnote">*Schweiz ausgeschlossen</div>
+                {%- endif -%}
+              </div>
+              <div class="loyalty-mobile__perk-value {%- if block.settings[perk_tier_value] == 'true' -%}loyalty-mobile__perk-value--check{%- elsif block.settings[perk_tier_value] == 'false' -%}loyalty-mobile__perk-value--cross{%- endif -%}">
+                {%- if block.settings[perk_tier_value] == 'true' -%}
+                  <div class="loyalty-check">
+                    {%- render 'icon' with 'success-checkmark', width: 16, mobile_width: 14 -%}
+                    <span class="sr-only">Included</span>
+                  </div>
+                {%- elsif block.settings[perk_tier_value] == 'false' -%}
+                  <div class="loyalty-cross">
+                    <span>×</span>
+                    <span class="sr-only">Not included</span>
+                  </div>
+                {%- else -%}
+                  <span class="loyalty-value">{{ block.settings[perk_tier_value] }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    
+    <!-- Additional tier cards (hidden by default) -->
+    {%- for tier_index in (2..4) -%}
+      {%- assign tier_name_key = 'tier_' | append: tier_index | append: '_name' -%}
+      {%- assign tier_subtitle_key = 'tier_' | append: tier_index | append: '_subtitle' -%}
+      
+      <div class="loyalty-mobile__card" data-tier="{{ tier_index }}" style="display: none;">
+        <div class="loyalty-mobile__header">
+          <h3 class="loyalty-mobile__tier-name">{{ block.settings[tier_name_key] }}</h3>
+          {%- if block.settings[tier_subtitle_key] != blank -%}
+            <p class="loyalty-mobile__tier-subtitle">{{ block.settings[tier_subtitle_key] }}</p>
+          {%- endif -%}
+        </div>
+        
+        <div class="loyalty-mobile__perks">
+          {%- for i in (1..6) -%}
+            {%- assign perk_name = 'perk_' | append: i | append: '_name' -%}
+            {%- assign perk_tier_value = 'perk_' | append: i | append: '_tier_' | append: tier_index -%}
+            
+            {%- if block.settings[perk_name] != blank -%}
+              <div class="loyalty-mobile__perk">
+                <div class="loyalty-mobile__perk-name">
+                  {{ block.settings[perk_name] }}
+                  {%- if block.settings[perk_name] contains '*' -%}
+                    <div class="loyalty-mobile__footnote">*Sets und Gutscheine ausgeschlossen</div>
+                  {%- elsif block.settings[perk_name] contains 'Versand' and block.settings[perk_name] contains '*' -%}
+                    <div class="loyalty-mobile__footnote">*Schweiz ausgeschlossen</div>
+                  {%- endif -%}
+                </div>
+                <div class="loyalty-mobile__perk-value {%- if block.settings[perk_tier_value] == 'true' -%}loyalty-mobile__perk-value--check{%- elsif block.settings[perk_tier_value] == 'false' -%}loyalty-mobile__perk-value--cross{%- endif -%}">
+                  {%- if block.settings[perk_tier_value] == 'true' -%}
+                    <div class="loyalty-check">
+                      {%- render 'icon' with 'success-checkmark', width: 16, mobile_width: 14 -%}
+                      <span class="sr-only">Included</span>
+                    </div>
+                  {%- elsif block.settings[perk_tier_value] == 'false' -%}
+                    <div class="loyalty-cross">
+                      <span>×</span>
+                      <span class="sr-only">Not included</span>
+                    </div>
+                  {%- else -%}
+                    <span class="loyalty-value">{{ block.settings[perk_tier_value] }}</span>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endfor -%}
+    
+    <!-- Pagination Dots -->
+    <div class="loyalty-mobile__pagination">
+      {%- comment -%}Generate all 4 tier dots{%- endcomment -%}
+      <button class="loyalty-mobile__dot is-active" data-tier="1" aria-label="View {{ block.settings.tier_1_name }}"></button>
+      <button class="loyalty-mobile__dot" data-tier="2" aria-label="View {{ block.settings.tier_2_name }}"></button>
+      <button class="loyalty-mobile__dot" data-tier="3" aria-label="View {{ block.settings.tier_3_name }}"></button>
+      <button class="loyalty-mobile__dot" data-tier="4" aria-label="View {{ block.settings.tier_4_name }}"></button>
+    </div>
+  </div> 
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const containers = document.querySelectorAll('.loyalty-table-wrapper .loyalty-mobile');
+      if (!containers.length) return;
+
+      containers.forEach((loyaltyMobile) => {
+        const dots = loyaltyMobile.querySelectorAll('.loyalty-mobile__dot');
+        const cards = loyaltyMobile.querySelectorAll('.loyalty-mobile__card');
+        const maxTier = 4; // Always 4 tiers
+        let currentTier = 1;
+
+        function showTier(tierNumber) {
+          // Hide all cards
+          cards.forEach((card) => {
+            card.style.display = 'none';
+          });
+
+          // Show target card
+          const targetCard = loyaltyMobile.querySelector(`.loyalty-mobile__card[data-tier="${tierNumber}"]`);
+          if (targetCard) {
+            targetCard.style.display = 'block';
+          }
+
+          // Update active dot
+          dots.forEach((d) => {
+            d.classList.remove('is-active');
+          });
+          
+          const activeDot = loyaltyMobile.querySelector(`.loyalty-mobile__dot[data-tier="${tierNumber}"]`);
+          if (activeDot) {
+            activeDot.classList.add('is-active');
+          }
+
+          currentTier = tierNumber;
+        }
+
+        // Dot click functionality
+        dots.forEach((dot) => {
+          dot.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetTier = parseInt(this.dataset.tier);
+            showTier(targetTier);
+          });
+          
+          // Also add touch event for mobile
+          dot.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const targetTier = parseInt(this.dataset.tier);
+            showTier(targetTier);
+          });
+        });
+
+        // Swipe functionality
+        let startX = 0;
+        let startY = 0;
+        let startTime = 0;
+        let tracking = false;
+        const minSwipeDistance = 30;
+        const maxSwipeTime = 1000;
+
+        function handleTouchStart(e) {
+          if (e.touches && e.touches.length === 1) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            startTime = Date.now();
+            tracking = true;
+          }
+        }
+
+        function handleTouchMove(e) {
+          if (!tracking || !e.touches || e.touches.length !== 1) return;
+          
+          const touch = e.touches[0];
+          const deltaX = Math.abs(touch.clientX - startX);
+          const deltaY = Math.abs(touch.clientY - startY);
+          
+          // If horizontal movement is greater than vertical, prevent scroll
+          if (deltaX > deltaY && deltaX > 10) {
+            e.preventDefault();
+          }
+        }
+
+        function handleTouchEnd(e) {
+          if (!tracking) return;
+          
+          const endTime = Date.now();
+          const swipeTime = endTime - startTime;
+          
+          if (e.changedTouches && e.changedTouches.length === 1 && swipeTime < maxSwipeTime) {
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const deltaX = endX - startX;
+            const deltaY = endY - startY;
+
+            // Check if it's a horizontal swipe
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
+              if (deltaX > 0 && currentTier > 1) {
+                // Swipe right - go to previous tier
+                showTier(currentTier - 1);
+              } else if (deltaX < 0 && currentTier < maxTier) {
+                // Swipe left - go to next tier  
+                showTier(currentTier + 1);
+              }
+            }
+          }
+          
+          tracking = false;
+        }
+
+        // Add touch event listeners
+        loyaltyMobile.addEventListener('touchstart', handleTouchStart, { passive: false });
+        loyaltyMobile.addEventListener('touchmove', handleTouchMove, { passive: false });
+        loyaltyMobile.addEventListener('touchend', handleTouchEnd, { passive: false });
+        
+        // Also add to all cards for better coverage
+        cards.forEach((card) => {
+          card.addEventListener('touchstart', handleTouchStart, { passive: false });
+          card.addEventListener('touchmove', handleTouchMove, { passive: false });
+          card.addEventListener('touchend', handleTouchEnd, { passive: false });
+        });
+
+        // Initialize view
+        showTier(currentTier);
+      });
+    });
+  </script>
+  
+  {%- if block.settings.show_footnotes -%}
+    <div class="loyalty-table__footnotes">
+      <p class="text-xs text-subdued">
+        *Sets und Gutscheine ausgeschlossen<br>
+        *Schweiz ausgeschlossen
+      </p>
+    </div>
+  {%- endif -%}
+</div>
