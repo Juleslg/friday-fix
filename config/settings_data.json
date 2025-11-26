@@ -1,1 +1,768 @@
-{"current":{"section_spacing":"tight","icon_stroke_width":1,"button_border_radius":30,"input_border_radius":30,"dialog_backdrop_blur":12,"default_color_scheme":"scheme-2","product_on_sale_accent":"#1c1b1b","product_sold_out_badge_background":"#321e1e","product_custom_badge_background":"#ffffff","text_font":"palatino_n4","text_font_size_mobile":12,"text_font_size_desktop":13,"text_font_text_transform":"normal","text_font_letter_spacing":0,"heading_font":"bricolage_grotesque_n4","heading_font_size_factor":0.9,"heading_text_transform":"uppercase","heading_letter_spacing":0,"heading_line_height":0.9,"subheading_font":"bricolage_grotesque_n4","subheading_font_size":14,"subheading_text_transform":"uppercase","subheading_icon":"none","button_text_font":"heading","button_font_size_mobile":12,"button_font_size_desktop":13,"button_text_transform":"none","input_uppercase":false,"heading_default_highlight_effect":"underline_pencil","currency_code_enabled":false,"button_animation":"none","image_hover_animation":"none","stagger_products":false,"color_swatch_shape":"circle","color_swatch_config":"Traditionell\n\nMokka:mokka.png\nHimmelgrau:himmelgrau.png\nFlieder:flieder.png\nPfirsich:pfirsich.png\nBeige:beige.png\nBeige Dipped:beige_dipped.png\nGraublau Vollfarben:graublau.png\nGraublau:graublau.png\nGreyblue:graublau.png\nGris-Bleu:graublau.png\nGraublau Dipped:graublau_dipped.png\nGreyblue Dipped:graublau_dipped.png\nGris-Bleu Dipped:graublau_dipped.png\nGraublau Innen:graublau_dipped.png\nGreyblue Inside:graublau_dipped.png\nHellblau:hellblau.png\nLightblue:hellblau.png\nBleu Clair:hellblau.png\nHellgrau:hellgrau.png\nLight Grey:hellgrau.png\nGris Clair:hellgrau:png\nJade:jade.png\nRosé Vollfarben:rose.png\nSteingrau Vollfarben:steingrau.png\nKlar:klar.png\nClear:klar.png\nClair:klar.png\nLachs:lachs.png\nSalmon:lachs.png\nSaumon:lachs.png\nMintgrün:mintgruen.png\nNachtschwarz:nachtschwarz.png\nNightblack:nachtschwarz.png\nNoir Nuit:nachtschwarz.png\nNachtschwarz Dipped:nachtschwarz_dipped.png\nNightblack Dipped:nachtschwarz_dipped.png\nNoir Nuit Dipped:nachtschwarz_dipped.png\nTeal Vollfarben:teal.png\nNaturweiß:naturweiss.png\nNatural White:naturweiss.png\nBlanc Naturel:naturweiss.png\nNaturweiß Dipped:naturweiss_dipped.png\nNatural White Dipped:naturweiss_dipped.png\nBlanc Naturel Dipped:naturweiss_dipped.png\nRosé:rose.png\nRosé Dipped:rose_dipped.png\nSalbei:salbei.png\nSage:salbei.png\nSauge:salbei.png\nSand:sand.png\nSable:sand.png\nSand Dipped:sand_dipped.png\nSable Dipped:sand_dipped.png\nSchneeweiß:schneeweiss.png\nSnow White:schneeweiss.png\nBlanc neige:schneeweiss.png\nSenfgelb:senfgelb.png\nMustard Yellow:senfgelb.png\nMoutarde:senfgelb.png\nSteingrau:steingrau.png\nStonegrey:steingrau.png\nGris-Pierre:steingrau.png\nSteingrau Dipped:steingrau_dipped.png\nStonegrey Dipped:steingrau_dipped.png\nGris-Pierre Dipped:steingrau_dipped.png\nSteingrau Innen:steingrau_dipped.png\nTeal:teal.png\nTeal Dipped:teal_dipped.png\nTeal Innen:teal_innen.png\nTeal Inside:teal_innen.png\nTeal Intérieur:teal_innen.png\nTransparent:transparent.png\nTürkis:tuerkis.png\nTurquoise:tuerkis.png\nTürkis Dipped:tuerkis_dipped.png\nTurquoise Dipped:tuerkis_dipped.png\nRosé Vollfarben:rose.png\nTürkis Innen:tuerkis_innen.png\nTürkis Vollfarben:tuerkis.png\nTeal Vollfarben:teal.png\n\nKlassik\n\nAltrosa:altrosa.png\nOldrose:altrosa.png\nRose Sombre:altrosa.png\nAltrosa Innen:altrosa_innen.png\nOldrose Inside:altrosa_innen.png\nIntérieur Rose Sombre:altrosa_innen.png\nBlau Innen:blau_innen.png\nBlue Inside:blau_innen.png\nBleu Intérieur:blau_innen.png\nBlau-Weiß-Gestreift:blau_weiss_gestreift.png\nBlue-White-Striped:blau_weiss_gestreift.png\nRayé Bleu & Blanc:blau_weiss_gestreift.png\nFlieder Innen:flieder_innen.png\nLilac Inside:flieder_innen.png\nLilas Intérieur:flieder_innen.png\nApricot Innen:apricot_innen.png\nApricot Inside:apricot_innen.png\nAbricot Intérieur:apricot_innen.png\nGrün Innen:gruen_innen.png\nGreen Inside:gruen_innen.png\nVert Intérieur:gruen_innen.png\nKaramell:karamell.png\nCaramel:karamell.png\nKaramell Innen:karamell_innen.png\nCaramel Inside:karamell_innen.png\nIntérieur Caramel:karamell_innen.png\nKreideblau:kreideblau.png\nChalk Blue:kreideblau.png\nBleu Craie:kreideblau.png\nLanius Beige:lanius_beige.png\nPetrol:petrol.png\nPétrole:petrol.png\nPetrol Innen:petrol_innen.png\nPetrol Inside:petrol_innen.png\nIntérieur Pétrole:petrol_innen.png\nSand:sand.png\nSable:sand.png\nTaubenblau:taubenblau.png\nDove Blue:taubenblau.png\nBleu Pigeon:taubenblau.png\nTaubenblau Innen:taubenblau_innen.png\nDove Blue Inside:taubenblau_innen.png\nIntérieur bleu pigeon:taubenblau_innen.png\nWeiß:weiss.png\nWhite:weiss.png\nBlanc:weiss.png\nWeiß Innen:weiss_innen.png\nWhite Inside:weiss_innen.png\nIntérieur Blanc:weiss_innen.png\nEye Motiv:eye.jpg\nLine Motiv:line.jpg\nSmaragdgrün:smaragdgruen.png\nSmaragdgrün Innen:smaragdgruen_innen.png\nSaphirblau:saphirblau.png\nSaphirblau Innen:saphirblau_innen.png\nBernstein:bernstein.png\n\nBlumentöpfe\n\nKalkstein:kalkstein.png\nLimestone:kalkstein.png\nBlanc Minéral:kalkstein.png\nVanille:vanille.png\nVanilla:vanille.png\nWolkenblau:wolkenblau.png\nCloudy Blue:wolkenblau.png\nBleu Nuage:wolkenblau.png\n\nAberta \/ Antonio Rosa\n\nCremeweiß:cremeweiss.png\nCream White:cremeweiss.png\nBlanc Crème:cremeweiss.png\nSchwarz:schwarz.png\nBlack:schwarz.png\nNoir:schwarz.png\nHellgrau:hellgrau.png\nLight Grey:hellgrau.png\nGris Clair:hellgrau.png\nGrün Vollfarben:gruen.jpg\nBlau Vollfarben:blau.jpg\nOcker Vollfarben:Ocker.jpg\nGrün Handbemalt:gruen-handbemalt.jpg\nBlau Handbemalt:blau-handbemalt.jpg\nOcker Handbemalt:ocker-handbemalt.jpg\nAprikose gestreift:aprikose-gestreift.png\nAprikose kariert:aprikose-kariert.png\nBlau gestreift:blau-gestreift.png\nBlau-gestreift:blau-gestreift2.png\nGrün gestreift:gruen-gestreift.png\nGrün kariert:gruen-kariert.png\nRot gestreift:rot-gestreift.png\nRot kariert:rot-kariert.png\nOrange:orange.png\n\nPura\n\nBlau:blau.png\nRosa:rosa.png\n\nKerzenständer\n\nCreme:creme.png\nCream:creme.png\nCrème:creme.png\nGrau:grau.png\nGrey:grau.png\nGris:grau.png\nHellbeige:hellbeige.png\nLight Beige:hellbeige.png\nBeige Clair:hellbeige.png\nHellmint:hellmint.png\nLight Mint:hellmint.png\nMenthe Clair:hellmint.png\nKobaltblau:kobaltblau.png\nCobalt Blue:kobaltblau.png\nBleu Cobalt:kobaltblau.png\nKarminrot:karminrot.png\nCarmine Red:karminrot.png\nRouge Carmin:karminrot.png\nTerrakotta:terrakotta.png\nTerracotta:terrakotta.png\nWolkenweiß:wolkenweiss.png\nCloud White:wolkenweiss.png\nBlanc Nuage:wolkenweiss.png\n\nDecken & Teppiche\n\nAnthrazit:anthrazit.png\nAnthracite:anthrazit.png\nBlau-Marine:blau_marine.png\nBlue-Navy:blau_marine.png\nBleu-Marine:blau_marine.png\nBordeaux Meliert:bordeaux_meliert.png\nBordeaux mottled:bordeaux_meliert.png\nBordeaux moucheté:bordeaux_meliert.png\nCreme-Anthrazit:creme_anthrazit.png\nCream-Anthracite:creme_anthrazit.png\nCrème-Anthracite:creme_anthrazit.png\nCreme-Natur:creme_natur.png\nCream-Nature:creme_natur.png\nCrème-Nature:creme_natur.png\nDouble Face Marone Beige:double_face_marone_beige.png\nDouble Face - Chestnut Beige:double_face_marone_beige.png\nDOUBLE FACE - BEIGE:double_face_marone_beige.png\nFischgrät Marone Beige:fischgraet_marone_beige.png\nHerringbone - Chestnut Beige:fischgraet_marone_beige.png\nFLÉCHÉE -  BEIGE:fischgraet_marone_beige.png\nKaro Wollweiß:karo_wollweiss.png\nGrasgrün Meliert:grasgruen_meliert.png\nGras-Green mottled:grasgruen_meliert.png\nGrass green moucheté:grasgruen_meliert.png\nKobaltblau Meliert:kobaltblau_meliert.png\nCobalt Blue mottled:kobaltblau_meliert.png\nBleu Cobalt moucheté:kobaltblau_meliert.png\nMarineblau Meliert:marineblau_meliert.png\nNavy Blue mottled:marineblau_meliert.png\nBleu Marine moucheté:marineblau_meliert.png\nNatur:natur.png\nNature:natur.png\nRaute Wollweiß:raute_wollweiss.png\nSquare - Wool White:raute_wollweiss.png\nLOSANGE - BLANC LAINE:raute_wollweiss.png\nTürkis-Petrol:tuerkis_petrol.png\nTurquoise-Petrol:tuerkis_petrol.png\nTurquoise-Pétrole:tuerkis_petrol.png\nNaturweiß-Rosé:naturweiss-rose.png\nNaturweiß-Grün:naturweiss-gruen.png\nNaturweiß-Blau:naturweiss-blau.png\nNaturweiß-Gelb:naturweiss-gelb.png\n\nLila:lila.png\nMix:mix.png\nRot-weiß:rot-weiss.png\nSonnengelb-Rosa:sonnengelb-rosa.png\nRosa-Orange:rosa-orange.png\nGrasgrün:grasgrun.png\nKobaltblau:kobaltblau.png\nSonnengelb:sonnengelb.png","swatch_disabled_cross_color":"#f6a429","swatch_disabled_show_overlay":false,"product_card_color_scheme":"scheme-2","product_card_style":"heading","product_card_image_aspect_ratio":"portrait","product_card_show_secondary_image":true,"product_card_show_vendor":false,"product_card_info_position":"outside","product_card_info_vertical_alignment":"end","product_card_info_horizontal_alignment":"end","product_card_title_max_lines":0,"product_card_show_color_swatches":true,"product_card_show_tight_swatches":false,"product_card_swatches_position":"outside","product_card_swatches_placement":"place-self-end-center","swatch_discount_badge_background":"#de00fa","swatch_discount_csv_url":"https:\/\/cdn.shopify.com\/s\/files\/1\/0218\/8971\/2192\/files\/sale_update_-_Sheet1.csv?v=1762421653","product_card_show_rating":false,"product_card_badges_placement":"place-self-start","product_card_show_badges_vertically":false,"product_card_show_sold_out_badge":true,"product_card_show_discount":false,"product_card_discount_mode":"percentage","custom_badge_1_text":"neue farbe, atelier onomao, nouvelle couleur","product_card_show_quick_buy":true,"product_card_show_product_size_selector":false,"product_card_quick_buy_button_size":1.5,"product_card_padding_mobile":1.4,"product_card_padding_tablet":1.4,"product_card_padding_desktop":1.6,"product_listing_spacing":"small","cart_type":"drawer","cart_icon":"tote_bag","cart_show_free_shipping_bar":true,"cart_free_shipping_threshold":"105","social_facebook":"https:\/\/www.facebook.com\/onomao.interior","social_pinterest":"https:\/\/www.pinterest.de\/ono_mao\/","social_instagram":"https:\/\/www.instagram.com\/ono__mao\/","content_for_index":[],"blocks":{"15316669992541710076":{"type":"shopify:\/\/apps\/reviews-io\/blocks\/reviewsio-rating-snippet\/92a082e5-b297-4e88-b428-ac96cbc505f9","disabled":false,"settings":{"star":"#000","text_color":"#333","snippet_mode":"default","text":"Reviews","line_break":false,"listen_for_changes":false,"rating_without_brackets":false,"format_review_count":false,"show_popup":true,"anchor_to_reviews_widget":false,"show_empty_stars":false}},"14197025361042770389":{"type":"shopify:\/\/apps\/swish-formerly-wishlist-king\/blocks\/app-settings-main\/194f5011-a43c-4b22-b12e-eaf20dc4506a","disabled":false,"settings":{"theme_preset":"prestige","color_accent_1":"#000000","color_accent_2":"#000000","color_solid_button_label":"#FFFFFF","color_outline_button_label":"#000000","color_background_1":"#FFFFFF","color_background_2":"#FFFFFF","color_text":"#000000","button_min_height":45,"button_border_width":1,"button_border_radius":0,"input_min_height":45,"input_border_width":1,"input_border_radius":0,"shadow_opacity":15,"shadow_horizontal_offset":0,"shadow_vertical_offset":2,"shadow_blur":4,"font_text_scale":100,"access_mode":"UNRESTRICTED","wishlist_mode":"PRODUCT","wishlist_path":"\/apps\/wishlist","money_show_currency_code":true}},"16274361319697914395":{"type":"shopify:\/\/apps\/reviews-io\/blocks\/reviewsio-floating\/92a082e5-b297-4e88-b428-ac96cbc505f9","disabled":true,"settings":{"widget_id":"","show_all":true,"show_index":true,"show_product":true,"show_collection":true,"show_cart":true}},"10830403595879607806":{"type":"shopify:\/\/apps\/reviews-io\/blocks\/reviewsio-core\/92a082e5-b297-4e88-b428-ac96cbc505f9","disabled":false,"settings":{"url_key":"REVIEWS.io","lang":"auto","enable_syndication":true}},"2567389343055140935":{"type":"shopify:\/\/apps\/microsoft-clarity\/blocks\/clarity_js\/31c3d126-8116-4b4a-8ba1-baeda7c4aeea","disabled":false,"settings":{}},"15351435345818755577":{"type":"shopify:\/\/apps\/pandectes-gdpr\/blocks\/banner\/58c0baa2-6cc1-480c-9ea6-38d6d559556a","disabled":false,"settings":{}},"18208872656243357035":{"type":"shopify:\/\/apps\/joy-loyalty-program\/blocks\/joy-points-calculator-embed\/555c55c9-9a3d-4fe0-a7a8-2c256984a371","disabled":false,"settings":{"points_calculator_alignment":"left"}},"7584948915495707528":{"type":"shopify:\/\/apps\/joy-loyalty-program\/blocks\/app-embed\/555c55c9-9a3d-4fe0-a7a8-2c256984a371","disabled":true,"settings":{}},"855628211100114053":{"type":"shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507","disabled":false,"settings":{}},"2200952712151285029":{"type":"shopify:\/\/apps\/microsoft-clarity\/blocks\/brandAgents_js\/31c3d126-8116-4b4a-8ba1-baeda7c4aeea","disabled":false,"settings":{}},"13768625480086291342":{"type":"shopify:\/\/apps\/forms\/blocks\/forms\/8744a304-fcb1-4347-b211-bb6b4759a76a","disabled":false,"settings":{}},"2783554875815837874":{"type":"shopify:\/\/apps\/sea-accessibility-ada-wcag\/blocks\/app-embed\/0ab9368b-426b-42b4-93ea-63d9c8e88707","disabled":true,"settings":{}},"6680288666557934739":{"type":"shopify:\/\/apps\/swish-formerly-wishlist-king\/blocks\/wishlist-page\/194f5011-a43c-4b22-b12e-eaf20dc4506a","disabled":false,"settings":{"column_width":"md","wishlist_empty_link":"shopify:\/\/collections\/all","page_max_width":1200,"page_padding_top":30,"page_padding_bottom":80,"show_share_button":true,"show_buy_all_button":false,"show_clear_wishlist_button":false,"add_to_cart_remove_from_wishlist":false,"remove_button_style":"icon","product_options":"dropdowns","cta_button":"add_to_cart","cta_button_style":"solid_accent_1","alignment":"center","image_aspect_ratio":"1\/1","image_object_fit":"cover","show_vendor":false,"show_product_title":true,"show_price":true,"show_variant_input_label":false}},"13655089695959051254":{"type":"shopify:\/\/apps\/swish-formerly-wishlist-king\/blocks\/code-access\/194f5011-a43c-4b22-b12e-eaf20dc4506a","disabled":false,"settings":{"version":"staging_1"}},"14307793411587686469":{"type":"shopify:\/\/apps\/latori-best-price-indicator\/blocks\/bpi-price\/eada1d19-c2fc-4cf3-b15b-fffa17eaaa3a","disabled":true,"settings":{}}},"color_schemes":{"scheme-1":{"settings":{"text_color":"#1c1c1c","background":"#faf4f0","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","subheading_background":"","subheading_border_color":"","subheading_text_color":"#1c1c1c","heading_highlight_accent_color":"#1c1c1c","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#1c1c1c"}},"scheme-2":{"settings":{"text_color":"#1c1c1c","background":"#ffffff","background_gradient":"","secondary_background":"#f0f0f0","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","subheading_background":"","subheading_border_color":"","subheading_text_color":"#1c1c1c","heading_highlight_accent_color":"#1c1c1c","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#1c1c1c"}},"scheme-3":{"settings":{"text_color":"#ffffff","background":"rgba(0,0,0,0)","background_gradient":"","secondary_background":"#f0f0f0","primary_button_background":"#ffffff","primary_button_text_color":"#080912","subheading_background":"","subheading_border_color":"rgba(0,0,0,0)","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#030305","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#030305"}},"scheme-4":{"settings":{"text_color":"#ffffff","background":"#1c1c1c","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#000000","primary_button_text_color":"#1c1c1c","subheading_background":"","subheading_border_color":"","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#ffffff","heading_highlight_text_color":"#1c1c1c","input_background":"#1c1c1c","input_text_color":"#ffffff"}},"scheme-5":{"settings":{"text_color":"#321e1e","background":"#f1e4d3","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#321e1e","primary_button_text_color":"#ffffff","subheading_background":"","subheading_border_color":"","subheading_text_color":"#321e1e","heading_highlight_accent_color":"#a32a1a","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#321e1e"}},"scheme-6":{"settings":{"text_color":"#ffffff","background":"#52572e","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#ffffff","primary_button_text_color":"#52572e","subheading_background":"","subheading_border_color":"","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#ffffff","heading_highlight_text_color":"#52572e","input_background":"#ffffff","input_text_color":"#52572e"}},"scheme-7":{"settings":{"text_color":"#ffffff","background":"#3d5473","background_gradient":"","secondary_background":"#3d5473","primary_button_background":"#3d5473","primary_button_text_color":"#ffffff","subheading_background":"#3d5473","subheading_border_color":"","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#3d5473","heading_highlight_text_color":"#ffffff","input_background":"#3d5473","input_text_color":"#ffffff"}},"scheme-c50e361a-c6f4-414b-85be-0bb7fcad5419":{"settings":{"text_color":"#ffffff","background":"#3f3529","background_gradient":"","secondary_background":"#3f3529","primary_button_background":"#3f3529","primary_button_text_color":"#ffffff","subheading_background":"","subheading_border_color":"","subheading_text_color":"#3f3529","heading_highlight_accent_color":"#3f3529","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#3f3529"}},"scheme-1459fbaa-a54f-463e-a312-655aaccfb65e":{"settings":{"text_color":"#ffffff","background":"#732d14","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#ffffff","primary_button_text_color":"#732d14","subheading_background":"","subheading_border_color":"","subheading_text_color":"#732d14","heading_highlight_accent_color":"#732d14","heading_highlight_text_color":"#ffffff","input_background":"#732d14","input_text_color":"#ffffff"}},"scheme-a66072b8-cdc0-4b4b-a3cc-bea4920e9b3b":{"settings":{"text_color":"#1c1c1c","background":"#f2f2f2","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","subheading_background":"","subheading_border_color":"","subheading_text_color":"#1c1c1c","heading_highlight_accent_color":"#1c1c1c","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#1c1c1c"}},"scheme-9436df2c-16b5-40c5-b58b-045ad6fd53c2":{"settings":{"text_color":"#ffffff","background":"#314158","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","subheading_background":"","subheading_border_color":"","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#ffffff","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#ffffff"}},"scheme-bf5830a1-04c9-4c6b-9f64-dc2b96337074":{"settings":{"text_color":"#1c1c1c","background":"#030305","background_gradient":"linear-gradient(180deg, rgba(241, 228, 211, 1), rgba(255, 255, 255, 1) 86%)","secondary_background":"#52572e","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","subheading_background":"#030305","subheading_border_color":"#030305","subheading_text_color":"#1c1c1c","heading_highlight_accent_color":"#1c1c1c","heading_highlight_text_color":"#030305","input_background":"#030305","input_text_color":"#1c1c1c"}}}},"presets":{"Stretch":{"button_border_radius":30,"input_border_radius":30,"dialog_backdrop_blur":12,"product_sold_out_badge_background":"#321e1e","product_custom_badge_background":"#ffffff","text_font":"instrument_sans_n4","text_font_size_mobile":12,"text_font_size_desktop":13,"text_font_text_transform":"normal","text_font_letter_spacing":0,"heading_font":"bricolage_grotesque_n4","heading_font_size_factor":0.9,"heading_text_transform":"lowercase","heading_letter_spacing":-5,"heading_line_height":0.9,"subheading_font":"instrument_sans_n5","subheading_text_transform":"lowercase","subheading_icon":"circle","button_font_size_mobile":12,"button_font_size_desktop":13,"button_text_transform":"lowercase","heading_default_highlight_effect":"underline_pencil","button_animation":"up","image_hover_animation":"zoom","product_card_color_scheme":"scheme-1","product_card_show_vendor":false,"product_card_info_position":"inside","product_card_info_vertical_alignment":"end","product_card_show_color_swatches":false,"product_card_swatches_position":"inside","product_card_badges_placement":"place-self-start","product_card_show_badges_vertically":false,"product_card_show_sold_out_badge":true,"product_card_show_discount":false,"product_card_discount_mode":"percentage","product_card_show_product_size_selector":false,"product_listing_spacing":"none","cart_type":"drawer","cart_icon":"tote_bag","color_schemes":{"scheme-1":{"settings":{"text_color":"#321e1e","background":"#faf4f0","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#321e1e","primary_button_text_color":"#ffffff","subheading_background":"","subheading_border_color":"","subheading_text_color":"#321e1e","heading_highlight_accent_color":"#321e1e","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#321e1e"}},"scheme-2":{"settings":{"text_color":"#321e1e","background":"#ffffff","background_gradient":"","secondary_background":"#faf4f0","primary_button_background":"#321e1e","primary_button_text_color":"#ffffff","subheading_background":"","subheading_border_color":"","subheading_text_color":"#321e1e","heading_highlight_accent_color":"#321e1e","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#321e1e"}},"scheme-3":{"settings":{"text_color":"#ffffff","background":"rgba(0,0,0,0)","background_gradient":"","secondary_background":"#f0f0f0","subheading_background":"","subheading_border_color":"rgba(0,0,0,0)","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#030305","heading_highlight_text_color":"#ffffff","primary_button_background":"#ffffff","primary_button_text_color":"#080912","input_background":"#ffffff","input_text_color":"#030305"}},"scheme-4":{"settings":{"text_color":"#faf4f0","background":"#321e1e","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#faf4f0","primary_button_text_color":"#321e1e","subheading_background":"","subheading_border_color":"","subheading_text_color":"#faf4f0","heading_highlight_accent_color":"#faf4f0","heading_highlight_text_color":"#321e1e","input_background":"#230f0f","input_text_color":"#ffffff"}},"scheme-5":{"settings":{"text_color":"#321e1e","background":"#f1e4d3","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#321e1e","primary_button_text_color":"#ffffff","subheading_background":"","subheading_border_color":"","subheading_text_color":"#321e1e","heading_highlight_accent_color":"#a32a1a","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#321e1e"}},"scheme-6":{"settings":{"text_color":"#ffffff","background":"#52572e","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#ffffff","primary_button_text_color":"#52572e","subheading_background":"","subheading_border_color":"","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#ffffff","heading_highlight_text_color":"#52572e","input_background":"#ffffff","input_text_color":"#52572e"}},"scheme-7":{"settings":{"text_color":"#ffffff","background":"#000000","secondary_background":"#000000","subheading_background":"","subheading_border_color":"","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#ffffff","heading_highlight_text_color":"#ffffff","primary_button_background":"#ffffff","primary_button_text_color":"#000000","input_background":"#000000","input_text_color":"#ffffff"}}}},"Snow":{"section_spacing":"loose","icon_stroke_width":1,"subheading_border_radius":0,"button_border_radius":0,"input_border_radius":0,"dialog_backdrop_blur":12,"product_custom_badge_background":"#e04837","text_font":"inter_n4","text_font_size_mobile":11,"text_font_size_desktop":12,"text_font_text_transform":"uppercase","text_font_letter_spacing":4,"heading_font":"inter_n4","heading_font_size_factor":0.9,"heading_letter_spacing":-5,"heading_line_height":0.9,"subheading_font":"inter_n4","subheading_text_transform":"uppercase","subheading_letter_spacing":4,"subheading_icon":"square","heading_default_highlight_effect":"marker","heading_italic_font":"inter_n4","button_animation":"up","image_hover_animation":"zoom_filter","color_swatch_shape":"rectangle","product_card_color_scheme":"scheme-4","product_card_style":"subheading","product_card_info_position":"inside","product_card_info_vertical_alignment":"start","product_card_info_horizontal_alignment":"start","product_card_show_color_swatches":true,"product_card_swatches_position":"inside","product_card_swatches_placement":"place-self-start-end","product_card_show_rating":false,"product_card_badges_placement":"place-self-start-end","product_card_show_badges_vertically":true,"product_card_discount_mode":"percentage","product_listing_spacing":"x-small","cart_type":"drawer","cart_icon":"shopping_bag","color_schemes":{"scheme-1":{"settings":{"text_color":"#1c1c1c","background":"#ffffff","background_gradient":"","secondary_background":"#f5f5f5","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","subheading_background":"rgba(0,0,0,0)","subheading_border_color":"rgba(0,0,0,0)","subheading_text_color":"#1c1c1c","heading_highlight_accent_color":"#1c1c1c","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#1c1c1c"}},"scheme-2":{"settings":{"text_color":"#ffffff","background":"#1c1c1c","background_gradient":"","secondary_background":"#ecebe9","primary_button_background":"#ffffff","primary_button_text_color":"#000000","subheading_background":"rgba(0,0,0,0)","subheading_border_color":"rgba(0,0,0,0)","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#ffffff","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#1c1c1c"}},"scheme-3":{"settings":{"text_color":"#ffffff","background":"rgba(0,0,0,0)","background_gradient":"","secondary_background":"#f0f0f0","subheading_background":"","subheading_border_color":"rgba(0,0,0,0)","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#030305","heading_highlight_text_color":"#ffffff","primary_button_background":"#ffffff","primary_button_text_color":"#080912","input_background":"#ffffff","input_text_color":"#030305"}},"scheme-4":{"settings":{"text_color":"#1c1c1c","background":"#ecebe9","background_gradient":"","secondary_background":"#ffffff","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","subheading_background":"rgba(0,0,0,0)","subheading_border_color":"rgba(0,0,0,0)","subheading_text_color":"#1c1c1c","heading_highlight_accent_color":"#1c1c1c","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#1c1c1c"}},"scheme-5":{"settings":{"text_color":"#1c1c1c","background":"#ffffff","background_gradient":"linear-gradient(310deg, rgba(255, 205, 0, 1), rgba(229, 184, 0, 1) 100%)","secondary_background":"#f5f5f5","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","subheading_background":"rgba(0,0,0,0)","subheading_border_color":"rgba(0,0,0,0)","subheading_text_color":"#1c1c1c","heading_highlight_accent_color":"#1c1c1c","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#1c1c1c"}},"scheme-6":{"settings":{"text_color":"#ffffff","background":"#40433d","background_gradient":"","secondary_background":"#f5f5f5","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","subheading_background":"rgba(0,0,0,0)","subheading_border_color":"rgba(0,0,0,0)","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#1c1c1c","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#1c1c1c"}},"scheme-7":{"settings":{"text_color":"#ffffff","background":"#736960","background_gradient":"","secondary_background":"#f5f5f5","primary_button_background":"#1c1c1c","primary_button_text_color":"#ffffff","subheading_background":"rgba(0,0,0,0)","subheading_border_color":"rgba(0,0,0,0)","subheading_text_color":"#ffffff","heading_highlight_accent_color":"#1c1c1c","heading_highlight_text_color":"#ffffff","input_background":"#ffffff","input_text_color":"#1c1c1c"}}}}}}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "section_spacing": "tight",
+    "icon_stroke_width": 1,
+    "button_border_radius": 30,
+    "input_border_radius": 30,
+    "dialog_backdrop_blur": 12,
+    "default_color_scheme": "scheme-2",
+    "product_on_sale_accent": "#1c1b1b",
+    "product_sold_out_badge_background": "#321e1e",
+    "product_custom_badge_background": "#ffffff",
+    "text_font": "instrument_sans_n4",
+    "text_font_size_mobile": 12,
+    "text_font_size_desktop": 13,
+    "text_font_text_transform": "normal",
+    "text_font_letter_spacing": 0,
+    "heading_font": "bricolage_grotesque_n4",
+    "heading_font_size_factor": 0.9,
+    "heading_text_transform": "uppercase",
+    "heading_letter_spacing": 0,
+    "heading_line_height": 0.9,
+    "subheading_font": "bricolage_grotesque_n4",
+    "subheading_font_size": 14,
+    "subheading_text_transform": "uppercase",
+    "subheading_icon": "none",
+    "button_text_font": "heading",
+    "button_font_size_mobile": 12,
+    "button_font_size_desktop": 13,
+    "button_text_transform": "none",
+    "input_uppercase": false,
+    "heading_default_highlight_effect": "underline_pencil",
+    "currency_code_enabled": false,
+    "button_animation": "none",
+    "image_hover_animation": "none",
+    "stagger_products": false,
+    "color_swatch_shape": "circle",
+    "color_swatch_config": "Traditionell\n\nMokka:mokka.png\nHimmelgrau:himmelgrau.png\nFlieder:flieder.png\nPfirsich:pfirsich.png\nBeige:beige.png\nBeige Dipped:beige_dipped.png\nGraublau Vollfarben:graublau.png\nGraublau:graublau.png\nGreyblue:graublau.png\nGris-Bleu:graublau.png\nGraublau Dipped:graublau_dipped.png\nGreyblue Dipped:graublau_dipped.png\nGris-Bleu Dipped:graublau_dipped.png\nGraublau Innen:graublau_dipped.png\nGreyblue Inside:graublau_dipped.png\nHellblau:hellblau.png\nLightblue:hellblau.png\nBleu Clair:hellblau.png\nHellgrau:hellgrau.png\nLight Grey:hellgrau.png\nGris Clair:hellgrau:png\nJade:jade.png\nRosé Vollfarben:rose.png\nSteingrau Vollfarben:steingrau.png\nKlar:klar.png\nClear:klar.png\nClair:klar.png\nLachs:lachs.png\nSalmon:lachs.png\nSaumon:lachs.png\nMintgrün:mintgruen.png\nNachtschwarz:nachtschwarz.png\nNightblack:nachtschwarz.png\nNoir Nuit:nachtschwarz.png\nNachtschwarz Dipped:nachtschwarz_dipped.png\nNightblack Dipped:nachtschwarz_dipped.png\nNoir Nuit Dipped:nachtschwarz_dipped.png\nTeal Vollfarben:teal.png\nNaturweiß:naturweiss.png\nNatural White:naturweiss.png\nBlanc Naturel:naturweiss.png\nNaturweiß Dipped:naturweiss_dipped.png\nNatural White Dipped:naturweiss_dipped.png\nBlanc Naturel Dipped:naturweiss_dipped.png\nRosé:rose.png\nRosé Dipped:rose_dipped.png\nSalbei:salbei.png\nSage:salbei.png\nSauge:salbei.png\nSand:sand.png\nSable:sand.png\nSand Dipped:sand_dipped.png\nSable Dipped:sand_dipped.png\nSchneeweiß:schneeweiss.png\nSnow White:schneeweiss.png\nBlanc neige:schneeweiss.png\nSenfgelb:senfgelb.png\nMustard Yellow:senfgelb.png\nMoutarde:senfgelb.png\nSteingrau:steingrau.png\nStonegrey:steingrau.png\nGris-Pierre:steingrau.png\nSteingrau Dipped:steingrau_dipped.png\nStonegrey Dipped:steingrau_dipped.png\nGris-Pierre Dipped:steingrau_dipped.png\nSteingrau Innen:steingrau_dipped.png\nTeal:teal.png\nTeal Dipped:teal_dipped.png\nTeal Innen:teal_innen.png\nTeal Inside:teal_innen.png\nTeal Intérieur:teal_innen.png\nTransparent:transparent.png\nTürkis:tuerkis.png\nTurquoise:tuerkis.png\nTürkis Dipped:tuerkis_dipped.png\nTurquoise Dipped:tuerkis_dipped.png\nRosé Vollfarben:rose.png\nTürkis Innen:tuerkis_innen.png\nTürkis Vollfarben:tuerkis.png\nTeal Vollfarben:teal.png\n\nKlassik\n\nAltrosa:altrosa.png\nOldrose:altrosa.png\nRose Sombre:altrosa.png\nAltrosa Innen:altrosa_innen.png\nOldrose Inside:altrosa_innen.png\nIntérieur Rose Sombre:altrosa_innen.png\nBlau Innen:blau_innen.png\nBlue Inside:blau_innen.png\nBleu Intérieur:blau_innen.png\nBlau-Weiß-Gestreift:blau_weiss_gestreift.png\nBlue-White-Striped:blau_weiss_gestreift.png\nRayé Bleu & Blanc:blau_weiss_gestreift.png\nFlieder Innen:flieder_innen.png\nLilac Inside:flieder_innen.png\nLilas Intérieur:flieder_innen.png\nApricot Innen:apricot_innen.png\nApricot Inside:apricot_innen.png\nAbricot Intérieur:apricot_innen.png\nGrün Innen:gruen_innen.png\nGreen Inside:gruen_innen.png\nVert Intérieur:gruen_innen.png\nKaramell:karamell.png\nCaramel:karamell.png\nKaramell Innen:karamell_innen.png\nCaramel Inside:karamell_innen.png\nIntérieur Caramel:karamell_innen.png\nKreideblau:kreideblau.png\nChalk Blue:kreideblau.png\nBleu Craie:kreideblau.png\nLanius Beige:lanius_beige.png\nPetrol:petrol.png\nPétrole:petrol.png\nPetrol Innen:petrol_innen.png\nPetrol Inside:petrol_innen.png\nIntérieur Pétrole:petrol_innen.png\nSand:sand.png\nSable:sand.png\nTaubenblau:taubenblau.png\nDove Blue:taubenblau.png\nBleu Pigeon:taubenblau.png\nTaubenblau Innen:taubenblau_innen.png\nDove Blue Inside:taubenblau_innen.png\nIntérieur bleu pigeon:taubenblau_innen.png\nWeiß:weiss.png\nWhite:weiss.png\nBlanc:weiss.png\nWeiß Innen:weiss_innen.png\nWhite Inside:weiss_innen.png\nIntérieur Blanc:weiss_innen.png\nEye Motiv:eye.jpg\nLine Motiv:line.jpg\nSmaragdgrün:smaragdgruen.png\nSmaragdgrün Innen:smaragdgruen_innen.png\nSaphirblau:saphirblau.png\nSaphirblau Innen:saphirblau_innen.png\nBernstein:bernstein.png\n\nBlumentöpfe\n\nKalkstein:kalkstein.png\nLimestone:kalkstein.png\nBlanc Minéral:kalkstein.png\nVanille:vanille.png\nVanilla:vanille.png\nWolkenblau:wolkenblau.png\nCloudy Blue:wolkenblau.png\nBleu Nuage:wolkenblau.png\n\nAberta / Antonio Rosa\n\nCremeweiß:cremeweiss.png\nCream White:cremeweiss.png\nBlanc Crème:cremeweiss.png\nSchwarz:schwarz.png\nBlack:schwarz.png\nNoir:schwarz.png\nHellgrau:hellgrau.png\nLight Grey:hellgrau.png\nGris Clair:hellgrau.png\nGrün Vollfarben:gruen.jpg\nBlau Vollfarben:blau.jpg\nOcker Vollfarben:Ocker.jpg\nGrün Handbemalt:gruen-handbemalt.jpg\nBlau Handbemalt:blau-handbemalt.jpg\nOcker Handbemalt:ocker-handbemalt.jpg\nAprikose gestreift:aprikose-gestreift.png\nAprikose kariert:aprikose-kariert.png\nBlau gestreift:blau-gestreift.png\nBlau-gestreift:blau-gestreift2.png\nGrün gestreift:gruen-gestreift.png\nGrün kariert:gruen-kariert.png\nRot gestreift:rot-gestreift.png\nRot kariert:rot-kariert.png\nOrange:orange.png\n\nPura\n\nBlau:blau.png\nRosa:rosa.png\n\nKerzenständer\n\nCreme:creme.png\nCream:creme.png\nCrème:creme.png\nGrau:grau.png\nGrey:grau.png\nGris:grau.png\nHellbeige:hellbeige.png\nLight Beige:hellbeige.png\nBeige Clair:hellbeige.png\nHellmint:hellmint.png\nLight Mint:hellmint.png\nMenthe Clair:hellmint.png\nKobaltblau:kobaltblau.png\nCobalt Blue:kobaltblau.png\nBleu Cobalt:kobaltblau.png\nKarminrot:karminrot.png\nCarmine Red:karminrot.png\nRouge Carmin:karminrot.png\nTerrakotta:terrakotta.png\nTerracotta:terrakotta.png\nWolkenweiß:wolkenweiss.png\nCloud White:wolkenweiss.png\nBlanc Nuage:wolkenweiss.png\n\nDecken & Teppiche\n\nAnthrazit:anthrazit.png\nAnthracite:anthrazit.png\nBlau-Marine:blau_marine.png\nBlue-Navy:blau_marine.png\nBleu-Marine:blau_marine.png\nBordeaux Meliert:bordeaux_meliert.png\nBordeaux mottled:bordeaux_meliert.png\nBordeaux moucheté:bordeaux_meliert.png\nCreme-Anthrazit:creme_anthrazit.png\nCream-Anthracite:creme_anthrazit.png\nCrème-Anthracite:creme_anthrazit.png\nCreme-Natur:creme_natur.png\nCream-Nature:creme_natur.png\nCrème-Nature:creme_natur.png\nDouble Face Marone Beige:double_face_marone_beige.png\nDouble Face - Chestnut Beige:double_face_marone_beige.png\nDOUBLE FACE - BEIGE:double_face_marone_beige.png\nFischgrät Marone Beige:fischgraet_marone_beige.png\nHerringbone - Chestnut Beige:fischgraet_marone_beige.png\nFLÉCHÉE -  BEIGE:fischgraet_marone_beige.png\nKaro Wollweiß:karo_wollweiss.png\nGrasgrün Meliert:grasgruen_meliert.png\nGras-Green mottled:grasgruen_meliert.png\nGrass green moucheté:grasgruen_meliert.png\nKobaltblau Meliert:kobaltblau_meliert.png\nCobalt Blue mottled:kobaltblau_meliert.png\nBleu Cobalt moucheté:kobaltblau_meliert.png\nMarineblau Meliert:marineblau_meliert.png\nNavy Blue mottled:marineblau_meliert.png\nBleu Marine moucheté:marineblau_meliert.png\nNatur:natur.png\nNature:natur.png\nRaute Wollweiß:raute_wollweiss.png\nSquare - Wool White:raute_wollweiss.png\nLOSANGE - BLANC LAINE:raute_wollweiss.png\nTürkis-Petrol:tuerkis_petrol.png\nTurquoise-Petrol:tuerkis_petrol.png\nTurquoise-Pétrole:tuerkis_petrol.png\nNaturweiß-Rosé:naturweiss-rose.png\nNaturweiß-Grün:naturweiss-gruen.png\nNaturweiß-Blau:naturweiss-blau.png\nNaturweiß-Gelb:naturweiss-gelb.png\n\nLila:lila.png\nMix:mix.png\nRot-weiß:rot-weiss.png\nSonnengelb-Rosa:sonnengelb-rosa.png\nRosa-Orange:rosa-orange.png\nGrasgrün:grasgrun.png\nKobaltblau:kobaltblau.png\nSonnengelb:sonnengelb.png",
+    "swatch_disabled_cross_color": "#f6a429",
+    "swatch_disabled_show_overlay": false,
+    "product_card_color_scheme": "scheme-2",
+    "product_card_style": "heading",
+    "product_card_image_aspect_ratio": "portrait",
+    "product_card_show_secondary_image": true,
+    "product_card_show_vendor": false,
+    "product_card_info_position": "outside",
+    "product_card_info_vertical_alignment": "end",
+    "product_card_info_horizontal_alignment": "end",
+    "product_card_title_max_lines": 0,
+    "product_card_show_color_swatches": true,
+    "product_card_show_tight_swatches": false,
+    "product_card_swatches_position": "outside",
+    "product_card_swatches_placement": "place-self-end-center",
+    "swatch_discount_badge_background": "#de00fa",
+    "swatch_discount_csv_url": "https://cdn.shopify.com/s/files/1/0218/8971/2192/files/sale_update_-_Sheet1.csv?v=1762421653",
+    "product_card_show_rating": false,
+    "product_card_badges_placement": "place-self-start",
+    "product_card_show_badges_vertically": false,
+    "product_card_show_sold_out_badge": true,
+    "product_card_show_discount": false,
+    "product_card_discount_mode": "percentage",
+    "custom_badge_1_text": "neue farbe, atelier onomao, nouvelle couleur",
+    "product_card_show_quick_buy": true,
+    "product_card_show_product_size_selector": false,
+    "product_card_quick_buy_button_size": 1.5,
+    "product_card_padding_mobile": 0.7,
+    "product_card_padding_tablet": 1,
+    "product_card_padding_desktop": 1.5,
+    "product_listing_spacing": "small",
+    "cart_type": "drawer",
+    "cart_icon": "tote_bag",
+    "cart_show_free_shipping_bar": true,
+    "cart_free_shipping_threshold": "105",
+    "social_facebook": "https://www.facebook.com/onomao.interior",
+    "social_pinterest": "https://www.pinterest.de/ono_mao/",
+    "social_instagram": "https://www.instagram.com/ono__mao/",
+    "content_for_index": [],
+    "blocks": {
+      "15316669992541710076": {
+        "type": "shopify://apps/reviews-io/blocks/reviewsio-rating-snippet/92a082e5-b297-4e88-b428-ac96cbc505f9",
+        "disabled": false,
+        "settings": {
+          "star": "#000",
+          "text_color": "#333",
+          "snippet_mode": "default",
+          "text": "Reviews",
+          "line_break": false,
+          "listen_for_changes": false,
+          "rating_without_brackets": false,
+          "format_review_count": false,
+          "show_popup": true,
+          "anchor_to_reviews_widget": false,
+          "show_empty_stars": false
+        }
+      },
+      "14197025361042770389": {
+        "type": "shopify://apps/swish-formerly-wishlist-king/blocks/app-settings-main/194f5011-a43c-4b22-b12e-eaf20dc4506a",
+        "disabled": false,
+        "settings": {
+          "theme_preset": "prestige",
+          "color_accent_1": "#000000",
+          "color_accent_2": "#000000",
+          "color_solid_button_label": "#FFFFFF",
+          "color_outline_button_label": "#000000",
+          "color_background_1": "#FFFFFF",
+          "color_background_2": "#FFFFFF",
+          "color_text": "#000000",
+          "button_min_height": 45,
+          "button_border_width": 1,
+          "button_border_radius": 0,
+          "input_min_height": 45,
+          "input_border_width": 1,
+          "input_border_radius": 0,
+          "shadow_opacity": 15,
+          "shadow_horizontal_offset": 0,
+          "shadow_vertical_offset": 2,
+          "shadow_blur": 4,
+          "font_text_scale": 100,
+          "access_mode": "UNRESTRICTED",
+          "wishlist_mode": "PRODUCT",
+          "wishlist_path": "/apps/wishlist",
+          "money_show_currency_code": true
+        }
+      },
+      "16274361319697914395": {
+        "type": "shopify://apps/reviews-io/blocks/reviewsio-floating/92a082e5-b297-4e88-b428-ac96cbc505f9",
+        "disabled": true,
+        "settings": {
+          "widget_id": "",
+          "show_all": true,
+          "show_index": true,
+          "show_product": true,
+          "show_collection": true,
+          "show_cart": true
+        }
+      },
+      "10830403595879607806": {
+        "type": "shopify://apps/reviews-io/blocks/reviewsio-core/92a082e5-b297-4e88-b428-ac96cbc505f9",
+        "disabled": false,
+        "settings": {
+          "url_key": "REVIEWS.io",
+          "lang": "auto",
+          "enable_syndication": true
+        }
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "15351435345818755577": {
+        "type": "shopify://apps/pandectes-gdpr/blocks/banner/58c0baa2-6cc1-480c-9ea6-38d6d559556a",
+        "disabled": false,
+        "settings": {}
+      },
+      "18208872656243357035": {
+        "type": "shopify://apps/joy-loyalty-program/blocks/joy-points-calculator-embed/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+        "disabled": false,
+        "settings": {
+          "points_calculator_alignment": "left"
+        }
+      },
+      "7584948915495707528": {
+        "type": "shopify://apps/joy-loyalty-program/blocks/app-embed/555c55c9-9a3d-4fe0-a7a8-2c256984a371",
+        "disabled": true,
+        "settings": {}
+      },
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {}
+      },
+      "2200952712151285029": {
+        "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "13768625480086291342": {
+        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
+        "disabled": false,
+        "settings": {}
+      },
+      "2783554875815837874": {
+        "type": "shopify://apps/sea-accessibility-ada-wcag/blocks/app-embed/0ab9368b-426b-42b4-93ea-63d9c8e88707",
+        "disabled": true,
+        "settings": {}
+      },
+      "6680288666557934739": {
+        "type": "shopify://apps/swish-formerly-wishlist-king/blocks/wishlist-page/194f5011-a43c-4b22-b12e-eaf20dc4506a",
+        "disabled": false,
+        "settings": {
+          "column_width": "md",
+          "wishlist_empty_link": "shopify://collections/all",
+          "page_max_width": 1200,
+          "page_padding_top": 30,
+          "page_padding_bottom": 80,
+          "show_share_button": true,
+          "show_buy_all_button": false,
+          "show_clear_wishlist_button": false,
+          "add_to_cart_remove_from_wishlist": false,
+          "remove_button_style": "icon",
+          "product_options": "dropdowns",
+          "cta_button": "add_to_cart",
+          "cta_button_style": "solid_accent_1",
+          "alignment": "center",
+          "image_aspect_ratio": "1/1",
+          "image_object_fit": "cover",
+          "show_vendor": false,
+          "show_product_title": true,
+          "show_price": true,
+          "show_variant_input_label": false
+        }
+      },
+      "13655089695959051254": {
+        "type": "shopify://apps/swish-formerly-wishlist-king/blocks/code-access/194f5011-a43c-4b22-b12e-eaf20dc4506a",
+        "disabled": false,
+        "settings": {
+          "version": "staging_1"
+        }
+      },
+      "14307793411587686469": {
+        "type": "shopify://apps/latori-best-price-indicator/blocks/bpi-price/eada1d19-c2fc-4cf3-b15b-fffa17eaaa3a",
+        "disabled": true,
+        "settings": {}
+      }
+    },
+    "color_schemes": {
+      "scheme-1": {
+        "settings": {
+          "text_color": "#1c1c1c",
+          "background": "#faf4f0",
+          "background_gradient": "",
+          "secondary_background": "#ffffff",
+          "primary_button_background": "#1c1c1c",
+          "primary_button_text_color": "#ffffff",
+          "subheading_background": "",
+          "subheading_border_color": "",
+          "subheading_text_color": "#1c1c1c",
+          "heading_highlight_accent_color": "#1c1c1c",
+          "heading_highlight_text_color": "#ffffff",
+          "input_background": "#ffffff",
+          "input_text_color": "#1c1c1c"
+        }
+      },
+      "scheme-2": {
+        "settings": {
+          "text_color": "#1c1c1c",
+          "background": "#ffffff",
+          "background_gradient": "",
+          "secondary_background": "#f0f0f0",
+          "primary_button_background": "#1c1c1c",
+          "primary_button_text_color": "#ffffff",
+          "subheading_background": "",
+          "subheading_border_color": "",
+          "subheading_text_color": "#1c1c1c",
+          "heading_highlight_accent_color": "#1c1c1c",
+          "heading_highlight_text_color": "#ffffff",
+          "input_background": "#ffffff",
+          "input_text_color": "#1c1c1c"
+        }
+      },
+      "scheme-3": {
+        "settings": {
+          "text_color": "#ffffff",
+          "background": "rgba(0,0,0,0)",
+          "background_gradient": "",
+          "secondary_background": "#f0f0f0",
+          "primary_button_background": "#ffffff",
+          "primary_button_text_color": "#080912",
+          "subheading_background": "",
+          "subheading_border_color": "rgba(0,0,0,0)",
+          "subheading_text_color": "#ffffff",
+          "heading_highlight_accent_color": "#030305",
+          "heading_highlight_text_color": "#ffffff",
+          "input_background": "#ffffff",
+          "input_text_color": "#030305"
+        }
+      },
+      "scheme-4": {
+        "settings": {
+          "text_color": "#ffffff",
+          "background": "#1c1c1c",
+          "background_gradient": "",
+          "secondary_background": "#ffffff",
+          "primary_button_background": "#000000",
+          "primary_button_text_color": "#1c1c1c",
+          "subheading_background": "",
+          "subheading_border_color": "",
+          "subheading_text_color": "#ffffff",
+          "heading_highlight_accent_color": "#ffffff",
+          "heading_highlight_text_color": "#1c1c1c",
+          "input_background": "#1c1c1c",
+          "input_text_color": "#ffffff"
+        }
+      },
+      "scheme-5": {
+        "settings": {
+          "text_color": "#321e1e",
+          "background": "#f1e4d3",
+          "background_gradient": "",
+          "secondary_background": "#ffffff",
+          "primary_button_background": "#321e1e",
+          "primary_button_text_color": "#ffffff",
+          "subheading_background": "",
+          "subheading_border_color": "",
+          "subheading_text_color": "#321e1e",
+          "heading_highlight_accent_color": "#a32a1a",
+          "heading_highlight_text_color": "#ffffff",
+          "input_background": "#ffffff",
+          "input_text_color": "#321e1e"
+        }
+      },
+      "scheme-6": {
+        "settings": {
+          "text_color": "#ffffff",
+          "background": "#52572e",
+          "background_gradient": "",
+          "secondary_background": "#ffffff",
+          "primary_button_background": "#ffffff",
+          "primary_button_text_color": "#52572e",
+          "subheading_background": "",
+          "subheading_border_color": "",
+          "subheading_text_color": "#ffffff",
+          "heading_highlight_accent_color": "#ffffff",
+          "heading_highlight_text_color": "#52572e",
+          "input_background": "#ffffff",
+          "input_text_color": "#52572e"
+        }
+      },
+      "scheme-7": {
+        "settings": {
+          "text_color": "#ffffff",
+          "background": "#3d5473",
+          "background_gradient": "",
+          "secondary_background": "#3d5473",
+          "primary_button_background": "#3d5473",
+          "primary_button_text_color": "#ffffff",
+          "subheading_background": "#3d5473",
+          "subheading_border_color": "",
+          "subheading_text_color": "#ffffff",
+          "heading_highlight_accent_color": "#3d5473",
+          "heading_highlight_text_color": "#ffffff",
+          "input_background": "#3d5473",
+          "input_text_color": "#ffffff"
+        }
+      },
+      "scheme-c50e361a-c6f4-414b-85be-0bb7fcad5419": {
+        "settings": {
+          "text_color": "#ffffff",
+          "background": "#3f3529",
+          "background_gradient": "",
+          "secondary_background": "#3f3529",
+          "primary_button_background": "#3f3529",
+          "primary_button_text_color": "#ffffff",
+          "subheading_background": "",
+          "subheading_border_color": "",
+          "subheading_text_color": "#3f3529",
+          "heading_highlight_accent_color": "#3f3529",
+          "heading_highlight_text_color": "#ffffff",
+          "input_background": "#ffffff",
+          "input_text_color": "#3f3529"
+        }
+      },
+      "scheme-1459fbaa-a54f-463e-a312-655aaccfb65e": {
+        "settings": {
+          "text_color": "#ffffff",
+          "background": "#732d14",
+          "background_gradient": "",
+          "secondary_background": "#ffffff",
+          "primary_button_background": "#ffffff",
+          "primary_button_text_color": "#732d14",
+          "subheading_background": "",
+          "subheading_border_color": "",
+          "subheading_text_color": "#732d14",
+          "heading_highlight_accent_color": "#732d14",
+          "heading_highlight_text_color": "#ffffff",
+          "input_background": "#732d14",
+          "input_text_color": "#ffffff"
+        }
+      },
+      "scheme-a66072b8-cdc0-4b4b-a3cc-bea4920e9b3b": {
+        "settings": {
+          "text_color": "#1c1c1c",
+          "background": "#f2f2f2",
+          "background_gradient": "",
+          "secondary_background": "#ffffff",
+          "primary_button_background": "#1c1c1c",
+          "primary_button_text_color": "#ffffff",
+          "subheading_background": "",
+          "subheading_border_color": "",
+          "subheading_text_color": "#1c1c1c",
+          "heading_highlight_accent_color": "#1c1c1c",
+          "heading_highlight_text_color": "#ffffff",
+          "input_background": "#ffffff",
+          "input_text_color": "#1c1c1c"
+        }
+      },
+      "scheme-9436df2c-16b5-40c5-b58b-045ad6fd53c2": {
+        "settings": {
+          "text_color": "#ffffff",
+          "background": "#314158",
+          "background_gradient": "",
+          "secondary_background": "#ffffff",
+          "primary_button_background": "#1c1c1c",
+          "primary_button_text_color": "#ffffff",
+          "subheading_background": "",
+          "subheading_border_color": "",
+          "subheading_text_color": "#ffffff",
+          "heading_highlight_accent_color": "#ffffff",
+          "heading_highlight_text_color": "#ffffff",
+          "input_background": "#ffffff",
+          "input_text_color": "#ffffff"
+        }
+      },
+      "scheme-bf5830a1-04c9-4c6b-9f64-dc2b96337074": {
+        "settings": {
+          "text_color": "#1c1c1c",
+          "background": "#030305",
+          "background_gradient": "linear-gradient(180deg, rgba(241, 228, 211, 1), rgba(255, 255, 255, 1) 86%)",
+          "secondary_background": "#52572e",
+          "primary_button_background": "#1c1c1c",
+          "primary_button_text_color": "#ffffff",
+          "subheading_background": "#030305",
+          "subheading_border_color": "#030305",
+          "subheading_text_color": "#1c1c1c",
+          "heading_highlight_accent_color": "#1c1c1c",
+          "heading_highlight_text_color": "#030305",
+          "input_background": "#030305",
+          "input_text_color": "#1c1c1c"
+        }
+      }
+    }
+  },
+  "presets": {
+    "Stretch": {
+      "button_border_radius": 30,
+      "input_border_radius": 30,
+      "dialog_backdrop_blur": 12,
+      "product_sold_out_badge_background": "#321e1e",
+      "product_custom_badge_background": "#ffffff",
+      "text_font": "instrument_sans_n4",
+      "text_font_size_mobile": 12,
+      "text_font_size_desktop": 13,
+      "text_font_text_transform": "normal",
+      "text_font_letter_spacing": 0,
+      "heading_font": "bricolage_grotesque_n4",
+      "heading_font_size_factor": 0.9,
+      "heading_text_transform": "lowercase",
+      "heading_letter_spacing": -5,
+      "heading_line_height": 0.9,
+      "subheading_font": "instrument_sans_n5",
+      "subheading_text_transform": "lowercase",
+      "subheading_icon": "circle",
+      "button_font_size_mobile": 12,
+      "button_font_size_desktop": 13,
+      "button_text_transform": "lowercase",
+      "heading_default_highlight_effect": "underline_pencil",
+      "button_animation": "up",
+      "image_hover_animation": "zoom",
+      "product_card_color_scheme": "scheme-1",
+      "product_card_show_vendor": false,
+      "product_card_info_position": "inside",
+      "product_card_info_vertical_alignment": "end",
+      "product_card_show_color_swatches": false,
+      "product_card_swatches_position": "inside",
+      "product_card_badges_placement": "place-self-start",
+      "product_card_show_badges_vertically": false,
+      "product_card_show_sold_out_badge": true,
+      "product_card_show_discount": false,
+      "product_card_discount_mode": "percentage",
+      "product_card_show_product_size_selector": false,
+      "product_listing_spacing": "none",
+      "cart_type": "drawer",
+      "cart_icon": "tote_bag",
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "text_color": "#321e1e",
+            "background": "#faf4f0",
+            "background_gradient": "",
+            "secondary_background": "#ffffff",
+            "primary_button_background": "#321e1e",
+            "primary_button_text_color": "#ffffff",
+            "subheading_background": "",
+            "subheading_border_color": "",
+            "subheading_text_color": "#321e1e",
+            "heading_highlight_accent_color": "#321e1e",
+            "heading_highlight_text_color": "#ffffff",
+            "input_background": "#ffffff",
+            "input_text_color": "#321e1e"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "text_color": "#321e1e",
+            "background": "#ffffff",
+            "background_gradient": "",
+            "secondary_background": "#faf4f0",
+            "primary_button_background": "#321e1e",
+            "primary_button_text_color": "#ffffff",
+            "subheading_background": "",
+            "subheading_border_color": "",
+            "subheading_text_color": "#321e1e",
+            "heading_highlight_accent_color": "#321e1e",
+            "heading_highlight_text_color": "#ffffff",
+            "input_background": "#ffffff",
+            "input_text_color": "#321e1e"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "text_color": "#ffffff",
+            "background": "rgba(0,0,0,0)",
+            "background_gradient": "",
+            "secondary_background": "#f0f0f0",
+            "subheading_background": "",
+            "subheading_border_color": "rgba(0,0,0,0)",
+            "subheading_text_color": "#ffffff",
+            "heading_highlight_accent_color": "#030305",
+            "heading_highlight_text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#080912",
+            "input_background": "#ffffff",
+            "input_text_color": "#030305"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "text_color": "#faf4f0",
+            "background": "#321e1e",
+            "background_gradient": "",
+            "secondary_background": "#ffffff",
+            "primary_button_background": "#faf4f0",
+            "primary_button_text_color": "#321e1e",
+            "subheading_background": "",
+            "subheading_border_color": "",
+            "subheading_text_color": "#faf4f0",
+            "heading_highlight_accent_color": "#faf4f0",
+            "heading_highlight_text_color": "#321e1e",
+            "input_background": "#230f0f",
+            "input_text_color": "#ffffff"
+          }
+        },
+        "scheme-5": {
+          "settings": {
+            "text_color": "#321e1e",
+            "background": "#f1e4d3",
+            "background_gradient": "",
+            "secondary_background": "#ffffff",
+            "primary_button_background": "#321e1e",
+            "primary_button_text_color": "#ffffff",
+            "subheading_background": "",
+            "subheading_border_color": "",
+            "subheading_text_color": "#321e1e",
+            "heading_highlight_accent_color": "#a32a1a",
+            "heading_highlight_text_color": "#ffffff",
+            "input_background": "#ffffff",
+            "input_text_color": "#321e1e"
+          }
+        },
+        "scheme-6": {
+          "settings": {
+            "text_color": "#ffffff",
+            "background": "#52572e",
+            "background_gradient": "",
+            "secondary_background": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#52572e",
+            "subheading_background": "",
+            "subheading_border_color": "",
+            "subheading_text_color": "#ffffff",
+            "heading_highlight_accent_color": "#ffffff",
+            "heading_highlight_text_color": "#52572e",
+            "input_background": "#ffffff",
+            "input_text_color": "#52572e"
+          }
+        },
+        "scheme-7": {
+          "settings": {
+            "text_color": "#ffffff",
+            "background": "#000000",
+            "secondary_background": "#000000",
+            "subheading_background": "",
+            "subheading_border_color": "",
+            "subheading_text_color": "#ffffff",
+            "heading_highlight_accent_color": "#ffffff",
+            "heading_highlight_text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#000000",
+            "input_background": "#000000",
+            "input_text_color": "#ffffff"
+          }
+        }
+      }
+    },
+    "Snow": {
+      "section_spacing": "loose",
+      "icon_stroke_width": 1,
+      "subheading_border_radius": 0,
+      "button_border_radius": 0,
+      "input_border_radius": 0,
+      "dialog_backdrop_blur": 12,
+      "product_custom_badge_background": "#e04837",
+      "text_font": "inter_n4",
+      "text_font_size_mobile": 11,
+      "text_font_size_desktop": 12,
+      "text_font_text_transform": "uppercase",
+      "text_font_letter_spacing": 4,
+      "heading_font": "inter_n4",
+      "heading_font_size_factor": 0.9,
+      "heading_letter_spacing": -5,
+      "heading_line_height": 0.9,
+      "subheading_font": "inter_n4",
+      "subheading_text_transform": "uppercase",
+      "subheading_letter_spacing": 4,
+      "subheading_icon": "square",
+      "heading_default_highlight_effect": "marker",
+      "heading_italic_font": "inter_n4",
+      "button_animation": "up",
+      "image_hover_animation": "zoom_filter",
+      "color_swatch_shape": "rectangle",
+      "product_card_color_scheme": "scheme-4",
+      "product_card_style": "subheading",
+      "product_card_info_position": "inside",
+      "product_card_info_vertical_alignment": "start",
+      "product_card_info_horizontal_alignment": "start",
+      "product_card_show_color_swatches": true,
+      "product_card_swatches_position": "inside",
+      "product_card_swatches_placement": "place-self-start-end",
+      "product_card_show_rating": false,
+      "product_card_badges_placement": "place-self-start-end",
+      "product_card_show_badges_vertically": true,
+      "product_card_discount_mode": "percentage",
+      "product_listing_spacing": "x-small",
+      "cart_type": "drawer",
+      "cart_icon": "shopping_bag",
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "text_color": "#1c1c1c",
+            "background": "#ffffff",
+            "background_gradient": "",
+            "secondary_background": "#f5f5f5",
+            "primary_button_background": "#1c1c1c",
+            "primary_button_text_color": "#ffffff",
+            "subheading_background": "rgba(0,0,0,0)",
+            "subheading_border_color": "rgba(0,0,0,0)",
+            "subheading_text_color": "#1c1c1c",
+            "heading_highlight_accent_color": "#1c1c1c",
+            "heading_highlight_text_color": "#ffffff",
+            "input_background": "#ffffff",
+            "input_text_color": "#1c1c1c"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "text_color": "#ffffff",
+            "background": "#1c1c1c",
+            "background_gradient": "",
+            "secondary_background": "#ecebe9",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#000000",
+            "subheading_background": "rgba(0,0,0,0)",
+            "subheading_border_color": "rgba(0,0,0,0)",
+            "subheading_text_color": "#ffffff",
+            "heading_highlight_accent_color": "#ffffff",
+            "heading_highlight_text_color": "#ffffff",
+            "input_background": "#ffffff",
+            "input_text_color": "#1c1c1c"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "text_color": "#ffffff",
+            "background": "rgba(0,0,0,0)",
+            "background_gradient": "",
+            "secondary_background": "#f0f0f0",
+            "subheading_background": "",
+            "subheading_border_color": "rgba(0,0,0,0)",
+            "subheading_text_color": "#ffffff",
+            "heading_highlight_accent_color": "#030305",
+            "heading_highlight_text_color": "#ffffff",
+            "primary_button_background": "#ffffff",
+            "primary_button_text_color": "#080912",
+            "input_background": "#ffffff",
+            "input_text_color": "#030305"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "text_color": "#1c1c1c",
+            "background": "#ecebe9",
+            "background_gradient": "",
+            "secondary_background": "#ffffff",
+            "primary_button_background": "#1c1c1c",
+            "primary_button_text_color": "#ffffff",
+            "subheading_background": "rgba(0,0,0,0)",
+            "subheading_border_color": "rgba(0,0,0,0)",
+            "subheading_text_color": "#1c1c1c",
+            "heading_highlight_accent_color": "#1c1c1c",
+            "heading_highlight_text_color": "#ffffff",
+            "input_background": "#ffffff",
+            "input_text_color": "#1c1c1c"
+          }
+        },
+        "scheme-5": {
+          "settings": {
+            "text_color": "#1c1c1c",
+            "background": "#ffffff",
+            "background_gradient": "linear-gradient(310deg, rgba(255, 205, 0, 1), rgba(229, 184, 0, 1) 100%)",
+            "secondary_background": "#f5f5f5",
+            "primary_button_background": "#1c1c1c",
+            "primary_button_text_color": "#ffffff",
+            "subheading_background": "rgba(0,0,0,0)",
+            "subheading_border_color": "rgba(0,0,0,0)",
+            "subheading_text_color": "#1c1c1c",
+            "heading_highlight_accent_color": "#1c1c1c",
+            "heading_highlight_text_color": "#ffffff",
+            "input_background": "#ffffff",
+            "input_text_color": "#1c1c1c"
+          }
+        },
+        "scheme-6": {
+          "settings": {
+            "text_color": "#ffffff",
+            "background": "#40433d",
+            "background_gradient": "",
+            "secondary_background": "#f5f5f5",
+            "primary_button_background": "#1c1c1c",
+            "primary_button_text_color": "#ffffff",
+            "subheading_background": "rgba(0,0,0,0)",
+            "subheading_border_color": "rgba(0,0,0,0)",
+            "subheading_text_color": "#ffffff",
+            "heading_highlight_accent_color": "#1c1c1c",
+            "heading_highlight_text_color": "#ffffff",
+            "input_background": "#ffffff",
+            "input_text_color": "#1c1c1c"
+          }
+        },
+        "scheme-7": {
+          "settings": {
+            "text_color": "#ffffff",
+            "background": "#736960",
+            "background_gradient": "",
+            "secondary_background": "#f5f5f5",
+            "primary_button_background": "#1c1c1c",
+            "primary_button_text_color": "#ffffff",
+            "subheading_background": "rgba(0,0,0,0)",
+            "subheading_border_color": "rgba(0,0,0,0)",
+            "subheading_text_color": "#ffffff",
+            "heading_highlight_accent_color": "#1c1c1c",
+            "heading_highlight_text_color": "#ffffff",
+            "input_background": "#ffffff",
+            "input_text_color": "#1c1c1c"
+          }
+        }
+      }
+    }
+  }
+}
