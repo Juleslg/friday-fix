@@ -17,48 +17,13 @@
     }
 
     {%- if section.settings.layout_style == 'compact_grid' -%}
-      /* Compact 2-row carousel styles */
-      #shopify-section-{{ section.id }} .product-list--compact-carousel {
-        display: grid;
-        grid-template-rows: repeat(2, 1fr);
-        grid-auto-flow: column;
-        grid-auto-columns: calc(50% - var(--product-list-column-gap) / 2);
-        gap: var(--product-list-column-gap);
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding-inline: var(--container-gutter);
-      }
-      
-      #shopify-section-{{ section.id }} .product-list--compact-carousel::-webkit-scrollbar {
-        display: none;
-      }
-      
-      #shopify-section-{{ section.id }} .product-list--compact-carousel > * {
-        scroll-snap-align: start;
-      }
-
-      /* Hide product info, badges, swatches, quick buy in compact mode */
-      #shopify-section-{{ section.id }} .product-list--compact-carousel .product-card__info,
-      #shopify-section-{{ section.id }} .product-list--compact-carousel .product-card__figure .badge-list,
-      #shopify-section-{{ section.id }} .product-list--compact-carousel .product-card__quick-buy,
-      #shopify-section-{{ section.id }} .product-list--compact-carousel .product-card__floating-size-selector,
-      #shopify-section-{{ section.id }} .product-list--compact-carousel .product-card__swatch-list {
+      /* Compact carousel - hide product info, show only images */
+      #shopify-section-{{ section.id }} .product-list--compact .product-card__info,
+      #shopify-section-{{ section.id }} .product-list--compact .product-card__figure .badge-list,
+      #shopify-section-{{ section.id }} .product-list--compact .product-card__quick-buy,
+      #shopify-section-{{ section.id }} .product-list--compact .product-card__floating-size-selector,
+      #shopify-section-{{ section.id }} .product-list--compact .product-card__swatch-list {
         display: none !important;
-      }
-      
-      @media screen and (min-width: 700px) {
-        #shopify-section-{{ section.id }} .product-list--compact-carousel {
-          grid-auto-columns: calc(33.333% - var(--product-list-column-gap) * 2 / 3);
-        }
-      }
-      
-      @media screen and (min-width: 1000px) {
-        #shopify-section-{{ section.id }} .product-list--compact-carousel {
-          grid-auto-columns: calc(16.666% - var(--product-list-column-gap) * 5 / 6);
-        }
       }
     {%- endif -%}
   </style>
@@ -118,7 +83,7 @@
           
           if section.settings.layout_style == 'compact_grid'
             assign is_compact_mode = true
-            assign product_list_class = 'product-list--compact-carousel'
+            assign product_list_class = 'product-list--compact product-list--carousel scroll-area'
           elsif section.settings.stack_products_mobile == false and section.settings.stack_products_desktop == false
             assign product_list_class = 'product-list--carousel scroll-area'
           elsif section.settings.stack_products_mobile == false
@@ -200,7 +165,7 @@
                 {%- liquid
                   if is_compact_mode
                     assign products_to_show = block.settings.products_count
-                    assign image_sizes = '(max-width: 699px) 45vw, (max-width: 999px) 30vw, 15vw'
+                    assign image_sizes = '(max-width: 699px) 45vw, (max-width: 999px) 30vw, 20vw'
                   else
                     assign products_to_show = block.settings.products_count
                     capture image_sizes
@@ -215,7 +180,7 @@
                   endif
                 -%}
 
-                <product-list id="{{ product_list_id }}" class="product-list {% unless is_compact_mode %}product-list--padded{% endunless %} {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} {% unless is_compact_mode %}full-bleed{% endunless %} {{ product_list_class }}">
+                <product-list id="{{ product_list_id }}" class="product-list product-list--padded {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} full-bleed {{ product_list_class }}">
                   {%- liquid
                     if block.settings.collection != blank
                       paginate block.settings.collection.products by products_to_show
@@ -298,7 +263,7 @@
         },
         {
           "value": "compact_grid",
-          "label": "Compact 2-row carousel"
+          "label": "Compact carousel (images only)"
         }
       ],
       "default": "standard"
