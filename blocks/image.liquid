@@ -1,6 +1,6 @@
 {%- if block.settings.image != blank -%}
   {%- if block.settings.link != blank -%}
-    <a href="{{ block.settings.link }}" class="image-link">
+    <a href="{{ block.settings.link }}" style="display: block;">
       {%- render 'media' with block.settings.image, mobile_media: block.settings.mobile_image, max_width: block.settings.max_width, mobile_max_width: block.settings.mobile_max_width, preload: false, block: block -%}
     </a>
   {%- else -%}
