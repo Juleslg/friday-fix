@@ -1,20 +1,50 @@
 {%- if section.blocks.size > 0 -%}
   <style>
     #shopify-section-{{ section.id }} {
-      --product-list-column-count: {{ section.settings.products_per_row_mobile | times: 1 }};
+      {%- if section.settings.layout_style == 'compact_double_row' -%}
+        --product-list-column-count: 3;
+      {%- else -%}
+        --product-list-column-count: {{ section.settings.products_per_row_mobile | times: 1 }};
+      {%- endif -%}
     }
   
     @media screen and (min-width: 700px) {
       #shopify-section-{{ section.id }} {
-        --product-list-column-count: 2;
+        {%- if section.settings.layout_style == 'compact_double_row' -%}
+          --product-list-column-count: 4;
+        {%- else -%}
+          --product-list-column-count: 2;
+        {%- endif -%}
       }
     }
   
     @media screen and (min-width: 1000px) {
       #shopify-section-{{ section.id }} {
-        --product-list-column-count: {{ section.settings.products_per_row_desktop }};
+        {%- if section.settings.layout_style == 'compact_double_row' -%}
+          --product-list-column-count: 6;
+        {%- else -%}
+          --product-list-column-count: {{ section.settings.products_per_row_desktop }};
+        {%- endif -%}
       }
     }
+    
+    {%- if section.settings.layout_style == 'compact_double_row' -%}
+      #shopify-section-{{ section.id }} .product-list {
+        --product-list-row-gap: 1rem;
+        --product-list-column-gap: 0.75rem;
+      }
+      
+      #shopify-section-{{ section.id }} .product-card__info {
+        gap: 0.5rem;
+      }
+      
+      @media screen and (min-width: 1000px) {
+        #shopify-section-{{ section.id }} .product-list {
+          --product-list-row-gap: 1.25rem;
+          --product-list-column-gap: 1rem;
+        }
+      }
+    {%- endif -%}
   </style>
 
   <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
@@ -68,8 +98,10 @@
 
         {%- liquid
           assign product_list_class = ''
-  
-          if section.settings.stack_products_mobile == false and section.settings.stack_products_desktop == false
+          
+          if section.settings.layout_style == 'compact_double_row'
+            assign product_list_class = ''
+          elsif section.settings.stack_products_mobile == false and section.settings.stack_products_desktop == false
             assign product_list_class = 'product-list--carousel scroll-area'
           elsif section.settings.stack_products_mobile == false
             assign product_list_class = 'sm-max:product-list--carousel scroll-area'
@@ -125,8 +157,8 @@
 
               {%- assign product_list_id = 'product-list-' | append: block.id -%}
 
-              <div class="w-full {% unless section.settings.stack_products_desktop %}floating-controls-container{% endunless %}">
-                {%- unless section.settings.stack_products_desktop -%}
+              <div class="w-full {% unless section.settings.stack_products_desktop or section.settings.layout_style == 'compact_double_row' %}floating-controls-container{% endunless %}">
+                {%- unless section.settings.stack_products_desktop or section.settings.layout_style == 'compact_double_row' -%}
                   <carousel-prev-button class="floating-controls__control" aria-controls="{{ product_list_id }}">
                     <button class="circle-button circle-button--xl" disabled>
                       <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
@@ -136,24 +168,42 @@
                 {%- endunless -%}
 
                 <product-list id="{{ product_list_id }}" class="product-list product-list--padded {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} full-bleed {{ product_list_class }}">
-                  {%- capture sizes -%}(max-width: 699px) calc(100vw / {{ section.settings.products_per_row_mobile }} - 40px), (max-width: 999px) calc(100vw / {{ 3 | at_most: section.settings.products_per_row_desktop }} - 64px), calc((100vw - 96px) / {{ section.settings.products_per_row_desktop }}){%- endcapture -%}
+                  {%- liquid
+                    if section.settings.layout_style == 'compact_double_row'
+                      assign display_products_count = 12
+                      capture sizes
+                        echo '(max-width: 699px) calc(100vw / 3 - 40px), (max-width: 999px) calc(100vw / 4 - 64px), calc((100vw - 96px) / 6)'
+                      endcapture
+                    else
+                      assign display_products_count = block.settings.products_count
+                      capture sizes
+                        echo '(max-width: 699px) calc(100vw / '
+                        echo section.settings.products_per_row_mobile
+                        echo ' - 40px), (max-width: 999px) calc(100vw / '
+                        echo 3 | at_most: section.settings.products_per_row_desktop
+                        echo ' - 64px), calc((100vw - 96px) / '
+                        echo section.settings.products_per_row_desktop
+                        echo ')'
+                      endcapture
+                    endif
+                  -%}
 
                   {%- liquid
                     if block.settings.collection != blank
-                      paginate block.settings.collection.products by block.settings.products_count
-                        for product in block.settings.collection.products limit: block.settings.products_count
+                      paginate block.settings.collection.products by display_products_count
+                        for product in block.settings.collection.products limit: display_products_count
                           render 'product-card', product: product, reveal: true, sizes: sizes, position: forloop.index, block: block
                         endfor
                       endpaginate
                     else
-                      for i in (1..block.settings.products_count)
+                      for i in (1..display_products_count)
                         render 'product-card-placeholder', loop_index: i
                       endfor
                     endif
                   -%}
                 </product-list>
 
-                {%- unless section.settings.stack_products_desktop -%}
+                {%- unless section.settings.stack_products_desktop or section.settings.layout_style == 'compact_double_row' -%}
                   <carousel-next-button class="floating-controls__control" aria-controls="{{ product_list_id }}">
                     <button class="circle-button circle-button--xl">
                       <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
@@ -163,7 +213,7 @@
                 {%- endunless -%}
               </div>
 
-              {%- if section.settings.show_scrolling_bar and section.settings.stack_products_desktop == false or section.settings.stack_products_mobile == false -%}
+              {%- if section.settings.show_scrolling_bar and section.settings.layout_style != 'compact_double_row' and section.settings.stack_products_desktop == false or section.settings.stack_products_mobile == false -%}
                 {%- liquid
                   assign progress_bar_class = ''
 
@@ -202,21 +252,45 @@
       "default": "scheme-1"
     },
     {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Layout style",
+      "info": "Choose how products are displayed in this section",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "compact_double_row",
+          "label": "Compact double row"
+        }
+      ],
+      "default": "standard"
+    },
+    {
+      "type": "header",
+      "content": "Standard layout settings"
+    },
+    {
       "type": "checkbox",
       "id": "stack_products_mobile",
       "label": "t:global.product_list.stack_products_mobile",
+      "info": "Only applies to standard layout",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "stack_products_desktop",
       "label": "t:global.product_list.stack_products_desktop",
+      "info": "Only applies to standard layout",
       "default": true
     },
     {
       "type": "select",
       "id": "products_per_row_mobile",
       "label": "t:global.product_list.products_per_row_mobile",
+      "info": "Only applies to standard layout",
       "options": [
         {
           "value": "1",
@@ -235,6 +309,7 @@
       "min": 2,
       "max": 5,
       "label": "t:global.product_list.products_per_row_desktop",
+      "info": "Only applies to standard layout",
       "default": 4
     },
     {
