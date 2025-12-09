@@ -14,7 +14,7 @@ var ConfirmButton = class extends HTMLElement {
     this.addEventListener("click", (event) => {
       if (!window.confirm(this.getAttribute("data-message") ?? "Once confirmed, this action cannot be undone.")) {
         event.preventDefault();
-      }
+      } 
     });
   }
 };
