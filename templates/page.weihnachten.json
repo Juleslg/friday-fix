@@ -102,6 +102,7 @@
               "type": "image",
               "settings": {
                 "image": "shopify://shop_images/2025-10-29_Onomao8666_2.jpg",
+                "link": "",
                 "max_width": 100,
                 "mobile_max_width": 100
               },
@@ -160,6 +161,7 @@
               "type": "image",
               "settings": {
                 "image": "shopify://shop_images/2025-09-26_Onomao0985_1_1.jpg",
+                "link": "shopify://collections/aberta",
                 "max_width": 100,
                 "mobile_max_width": 100
               },
@@ -218,6 +220,7 @@
               "type": "image",
               "settings": {
                 "image": "shopify://shop_images/2025-10-23_Onomao6580.jpg",
+                "link": "",
                 "max_width": 100,
                 "mobile_max_width": 100
               },
@@ -277,6 +280,7 @@
               "type": "image",
               "settings": {
                 "image": "shopify://shop_images/GIFTCARD_2025_3243px_2124_X-MAS_1_2f3cf2b7-a18b-44ce-8c0d-76101df1a288.jpg",
+                "link": "",
                 "max_width": 100,
                 "mobile_max_width": 100
               },
