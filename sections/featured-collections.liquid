@@ -68,8 +68,11 @@
 
         {%- liquid
           assign product_list_class = ''
-  
-          if section.settings.stack_products_mobile == false and section.settings.stack_products_desktop == false
+          assign is_compact_mode = false
+          
+          if section.settings.layout_style == 'compact_grid'
+            assign is_compact_mode = true
+          elsif section.settings.stack_products_mobile == false and section.settings.stack_products_desktop == false
             assign product_list_class = 'product-list--carousel scroll-area'
           elsif section.settings.stack_products_mobile == false
             assign product_list_class = 'sm-max:product-list--carousel scroll-area'
@@ -125,45 +128,74 @@
 
               {%- assign product_list_id = 'product-list-' | append: block.id -%}
 
-              <div class="w-full {% unless section.settings.stack_products_desktop %}floating-controls-container{% endunless %}">
-                {%- unless section.settings.stack_products_desktop -%}
+              {%- liquid
+                if is_compact_mode
+                  assign show_carousel_controls = false
+                else
+                  assign show_carousel_controls = true
+                  unless section.settings.stack_products_desktop
+                    assign show_carousel_controls = true
+                  else
+                    assign show_carousel_controls = false
+                  endunless
+                endif
+              -%}
+
+              <div class="w-full {% if show_carousel_controls %}floating-controls-container{% endif %}">
+                {%- if show_carousel_controls -%}
                   <carousel-prev-button class="floating-controls__control" aria-controls="{{ product_list_id }}">
                     <button class="circle-button circle-button--xl" disabled>
                       <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
                       {%- render 'icon' with 'big-arrow-left', direction_aware: true, width: 14 -%}
                     </button>
                   </carousel-prev-button>
-                {%- endunless -%}
+                {%- endif -%}
 
-                <product-list id="{{ product_list_id }}" class="product-list product-list--padded {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} full-bleed {{ product_list_class }}">
-                  {%- capture sizes -%}(max-width: 699px) calc(100vw / {{ section.settings.products_per_row_mobile }} - 40px), (max-width: 999px) calc(100vw / {{ 3 | at_most: section.settings.products_per_row_desktop }} - 64px), calc((100vw - 96px) / {{ section.settings.products_per_row_desktop }}){%- endcapture -%}
+                {%- liquid
+                  if is_compact_mode
+                    assign products_to_show = 14
+                    assign image_sizes = '(max-width: 699px) 50vw, (max-width: 999px) 20vw, 15vw'
+                  else
+                    assign products_to_show = block.settings.products_count
+                    capture image_sizes
+                      echo '(max-width: 699px) calc(100vw / '
+                      echo section.settings.products_per_row_mobile
+                      echo ' - 40px), (max-width: 999px) calc(100vw / '
+                      echo 3 | at_most: section.settings.products_per_row_desktop
+                      echo ' - 64px), calc((100vw - 96px) / '
+                      echo section.settings.products_per_row_desktop
+                      echo ')'
+                    endcapture
+                  endif
+                -%}
 
+                <product-list id="{{ product_list_id }}" class="product-list product-list--padded {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} full-bleed {{ product_list_class }}" {% if is_compact_mode %}desktop-layout="thumbnails"{% endif %}>
                   {%- liquid
                     if block.settings.collection != blank
-                      paginate block.settings.collection.products by block.settings.products_count
-                        for product in block.settings.collection.products limit: block.settings.products_count
-                          render 'product-card', product: product, reveal: true, sizes: sizes, position: forloop.index, block: block
+                      paginate block.settings.collection.products by products_to_show
+                        for product in block.settings.collection.products limit: products_to_show
+                          render 'product-card', product: product, reveal: true, sizes: image_sizes, position: forloop.index, block: block
                         endfor
                       endpaginate
                     else
-                      for i in (1..block.settings.products_count)
+                      for i in (1..products_to_show)
                         render 'product-card-placeholder', loop_index: i
                       endfor
                     endif
                   -%}
                 </product-list>
 
-                {%- unless section.settings.stack_products_desktop -%}
+                {%- if show_carousel_controls -%}
                   <carousel-next-button class="floating-controls__control" aria-controls="{{ product_list_id }}">
                     <button class="circle-button circle-button--xl">
                       <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
                       {%- render 'icon' with 'big-arrow-right', direction_aware: true, width: 14 -%}
                     </button>
                   </carousel-next-button>
-                {%- endunless -%}
+                {%- endif -%}
               </div>
 
-              {%- if section.settings.show_scrolling_bar and section.settings.stack_products_desktop == false or section.settings.stack_products_mobile == false -%}
+              {%- if section.settings.show_scrolling_bar and is_compact_mode == false and section.settings.stack_products_desktop == false or section.settings.stack_products_mobile == false -%}
                 {%- liquid
                   assign progress_bar_class = ''
 
@@ -200,6 +232,22 @@
       "id": "color_scheme",
       "label": "t:global.colors.scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Layout style",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "compact_grid",
+          "label": "Compact grid (thumbnails)"
+        }
+      ],
+      "default": "standard"
     },
     {
       "type": "checkbox",
