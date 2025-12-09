@@ -1,65 +1,32 @@
 {%- if section.blocks.size > 0 -%}
   <style>
-    #shopify-section-{{ section.id }} {
-      {%- if section.settings.layout_style == 'compact_double_row' -%}
-        --product-list-column-count: 2;
-      {%- else -%}
-        --product-list-column-count: {{ section.settings.products_per_row_mobile | times: 1 }};
-      {%- endif -%}
-    }
-  
-    @media screen and (min-width: 700px) {
-      #shopify-section-{{ section.id }} {
-        {%- if section.settings.layout_style == 'compact_double_row' -%}
-          --product-list-column-count: 5;
-        {%- else -%}
-          --product-list-column-count: 2;
-        {%- endif -%}
-      }
-    }
-  
-    @media screen and (min-width: 1000px) {
-      #shopify-section-{{ section.id }} {
-        {%- if section.settings.layout_style == 'compact_double_row' -%}
-          --product-list-column-count: 6;
-        {%- else -%}
-          --product-list-column-count: {{ section.settings.products_per_row_desktop }};
-        {%- endif -%}
-      }
-    }
-    
     {%- comment -%}
-    Compact mode mimics the collection page "thumbnails" view
+    Standard layout: column count is set via section settings
+    Compact layout: column count is handled by theme CSS via desktop-layout="thumbnails" attribute
     {%- endcomment -%}
-    {%- if section.settings.layout_style == 'compact_double_row' -%}
-      #shopify-section-{{ section.id }} .product-list {
-        --product-card-row-count: 1;
-        --product-list-card-min-width: 5rem;
-        --product-list-row-gap: var(--product-list-column-gap);
+    {%- unless section.settings.layout_style == 'compact_double_row' -%}
+      #shopify-section-{{ section.id }} {
+        --product-list-column-count: {{ section.settings.products_per_row_mobile | times: 1 }};
       }
-      
-      /* Hide everything except product image in compact mode */
-      #shopify-section-{{ section.id }} .product-card__figure .badge-list,
-      #shopify-section-{{ section.id }} .product-card__info,
-      #shopify-section-{{ section.id }} .product-card__quick-buy,
-      #shopify-section-{{ section.id }} .product-card__floating-size-selector,
-      #shopify-section-{{ section.id }} .product-card__swatch-list {
-        display: none;
-      }
-      
-      /* Ensure highlighted cards don't span multiple columns in compact mode */
-      #shopify-section-{{ section.id }} .product-card--highlight {
-        grid-row-start: span var(--product-card-row-count);
-        grid-column: span 1;
-        grid-row-end: auto;
-      }
-      
-      @media screen and (min-width: 1150px) {
+    
+      @media screen and (min-width: 700px) {
         #shopify-section-{{ section.id }} {
-          --product-list-column-count: 7;
+          --product-list-column-count: 2;
         }
       }
-    {%- endif -%}
+    
+      @media screen and (min-width: 1000px) {
+        #shopify-section-{{ section.id }} {
+          --product-list-column-count: {{ section.settings.products_per_row_desktop }};
+        }
+      }
+    {%- endunless -%}
+    
+    {%- comment -%}
+    Compact mode uses the same 'thumbnails' layout as the collection page.
+    The desktop-layout="thumbnails" attribute triggers theme CSS that hides 
+    product info, badges, swatches, and quick buy buttons automatically.
+    {%- endcomment -%}
   </style>
 
   <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
@@ -182,7 +149,7 @@
                   </carousel-prev-button>
                 {%- endunless -%}
 
-                <product-list id="{{ product_list_id }}" class="product-list product-list--padded {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} full-bleed {{ product_list_class }}">
+                <product-list id="{{ product_list_id }}" class="product-list product-list--padded {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} full-bleed {{ product_list_class }}" {% if section.settings.layout_style == 'compact_double_row' %}desktop-layout="thumbnails"{% endif %}>
                   {%- liquid
                     if section.settings.layout_style == 'compact_double_row'
                       assign display_products_count = 14
