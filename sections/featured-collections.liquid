@@ -17,13 +17,81 @@
     }
 
     {%- if section.settings.layout_style == 'compact_grid' -%}
-      /* Compact carousel - hide product info, show only images */
-      #shopify-section-{{ section.id }} .product-list--compact .product-card__info,
-      #shopify-section-{{ section.id }} .product-list--compact .product-card__figure .badge-list,
-      #shopify-section-{{ section.id }} .product-list--compact .product-card__quick-buy,
-      #shopify-section-{{ section.id }} .product-list--compact .product-card__floating-size-selector,
-      #shopify-section-{{ section.id }} .product-list--compact .product-card__swatch-list {
+      /* Compact 2-row carousel */
+      #shopify-section-{{ section.id }} .product-list--compact-2row {
+        display: grid !important;
+        grid-template-rows: repeat(2, auto);
+        grid-auto-flow: column;
+        grid-auto-columns: 45%;
+        gap: 0.5rem;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 var(--container-gutter);
+        margin: 0 calc(-1 * var(--container-gutter));
+      }
+      
+      #shopify-section-{{ section.id }} .product-list--compact-2row::-webkit-scrollbar {
+        display: none;
+      }
+      
+      #shopify-section-{{ section.id }} .product-list--compact-2row {
+        scrollbar-width: none;
+      }
+      
+      #shopify-section-{{ section.id }} .product-list--compact-2row > * {
+        scroll-snap-align: start;
+        min-width: 0;
+      }
+      
+      /* Force equal height for all cards */
+      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card {
+        height: 100%;
+      }
+      
+      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__figure {
+        height: 100%;
+      }
+      
+      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__media {
+        height: 100%;
+      }
+      
+      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__image {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      /* Hide product info in compact mode */
+      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__info,
+      #shopify-section-{{ section.id }} .product-list--compact-2row .badge-list,
+      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__quick-buy,
+      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__floating-size-selector,
+      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__swatch-list {
         display: none !important;
+      }
+      
+      @media screen and (min-width: 700px) {
+        #shopify-section-{{ section.id }} .product-list--compact-2row {
+          grid-auto-columns: 30%;
+          gap: 0.75rem;
+        }
+      }
+      
+      @media screen and (min-width: 1000px) {
+        #shopify-section-{{ section.id }} .product-list--compact-2row {
+          grid-auto-columns: 16%;
+          gap: 0.75rem;
+        }
+      }
+      
+      @media screen and (min-width: 1400px) {
+        #shopify-section-{{ section.id }} .product-list--compact-2row {
+          grid-auto-columns: 14%;
+        }
       }
     {%- endif -%}
   </style>
@@ -83,7 +151,7 @@
           
           if section.settings.layout_style == 'compact_grid'
             assign is_compact_mode = true
-            assign product_list_class = 'product-list--compact product-list--carousel scroll-area'
+            assign product_list_class = 'product-list--compact-2row'
           elsif section.settings.stack_products_mobile == false and section.settings.stack_products_desktop == false
             assign product_list_class = 'product-list--carousel scroll-area'
           elsif section.settings.stack_products_mobile == false
@@ -165,7 +233,7 @@
                 {%- liquid
                   if is_compact_mode
                     assign products_to_show = block.settings.products_count
-                    assign image_sizes = '(max-width: 699px) 45vw, (max-width: 999px) 30vw, 20vw'
+                    assign image_sizes = '(max-width: 699px) 45vw, (max-width: 999px) 30vw, 16vw'
                   else
                     assign products_to_show = block.settings.products_count
                     capture image_sizes
@@ -180,7 +248,7 @@
                   endif
                 -%}
 
-                <product-list id="{{ product_list_id }}" class="product-list product-list--padded {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} full-bleed {{ product_list_class }}">
+                <product-list id="{{ product_list_id }}" class="product-list {% unless is_compact_mode %}product-list--padded full-bleed{% endunless %} {% if section.settings.tabs_alignment == 'center' and is_compact_mode == false %}justify-center{% endif %} {{ product_list_class }}">
                   {%- liquid
                     if block.settings.collection != blank
                       paginate block.settings.collection.products by products_to_show
@@ -263,7 +331,7 @@
         },
         {
           "value": "compact_grid",
-          "label": "Compact carousel (images only)"
+          "label": "Compact 2-row carousel"
         }
       ],
       "default": "standard"
