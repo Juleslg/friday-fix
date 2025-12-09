@@ -17,48 +17,32 @@
     }
 
     {%- if section.settings.layout_style == 'compact_grid' -%}
-      /* Compact 2-row carousel */
+      /* Compact 2-row carousel (fills down, then across) */
       #shopify-section-{{ section.id }} .product-list--compact-2row {
         display: grid !important;
-        grid-template-rows: repeat(2, auto);
+        grid-template-rows: repeat(2, minmax(0, 1fr));
         grid-auto-flow: column;
-        grid-auto-columns: 45%;
-        gap: 0.5rem;
+        grid-auto-columns: minmax(160px, 45vw);
+        gap: var(--product-list-column-gap);
         overflow-x: auto;
         overflow-y: hidden;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
-        padding: 0 var(--container-gutter);
-        margin: 0 calc(-1 * var(--container-gutter));
+        padding-inline: var(--container-gutter);
+        margin-inline: calc(-1 * var(--container-gutter));
       }
-      
-      #shopify-section-{{ section.id }} .product-list--compact-2row::-webkit-scrollbar {
-        display: none;
-      }
-      
-      #shopify-section-{{ section.id }} .product-list--compact-2row {
-        scrollbar-width: none;
-      }
-      
-      #shopify-section-{{ section.id }} .product-list--compact-2row > * {
-        scroll-snap-align: start;
-        min-width: 0;
-      }
-      
-      /* Force equal height for all cards */
-      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card {
-        height: 100%;
-      }
-      
-      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__figure {
-        height: 100%;
-      }
-      
+
+      #shopify-section-{{ section.id }} .product-list--compact-2row::-webkit-scrollbar { display: none; }
+      #shopify-section-{{ section.id }} .product-list--compact-2row { scrollbar-width: none; }
+      #shopify-section-{{ section.id }} .product-list--compact-2row > * { scroll-snap-align: start; min-width: 0; }
+
+      /* Equalize card heights and fit images */
+      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card,
+      #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__figure,
       #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__media {
         height: 100%;
       }
-      
       #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__image {
         height: 100%;
         width: 100%;
@@ -73,24 +57,20 @@
       #shopify-section-{{ section.id }} .product-list--compact-2row .product-card__swatch-list {
         display: none !important;
       }
-      
+
       @media screen and (min-width: 700px) {
         #shopify-section-{{ section.id }} .product-list--compact-2row {
-          grid-auto-columns: 30%;
-          gap: 0.75rem;
+          grid-auto-columns: minmax(180px, 30vw);
         }
       }
-      
       @media screen and (min-width: 1000px) {
         #shopify-section-{{ section.id }} .product-list--compact-2row {
-          grid-auto-columns: 16%;
-          gap: 0.75rem;
+          grid-auto-columns: minmax(200px, 16vw);
         }
       }
-      
       @media screen and (min-width: 1400px) {
         #shopify-section-{{ section.id }} .product-list--compact-2row {
-          grid-auto-columns: 14%;
+          grid-auto-columns: minmax(220px, 14vw);
         }
       }
     {%- endif -%}
@@ -233,7 +213,7 @@
                 {%- liquid
                   if is_compact_mode
                     assign products_to_show = block.settings.products_count
-                    assign image_sizes = '(max-width: 699px) 45vw, (max-width: 999px) 30vw, 16vw'
+                    assign image_sizes = '(max-width: 699px) 45vw, (max-width: 999px) 28vw, 16vw'
                   else
                     assign products_to_show = block.settings.products_count
                     capture image_sizes
