@@ -919,6 +919,7 @@
     },
     "featured_collections": {
       "name": "Featured collections",
+      "show_title": "Show title",
       "tabs_alignment": "Tabs alignment",
       "tabs_icon": "Tabs icon",
       "tabs_icon_options": {

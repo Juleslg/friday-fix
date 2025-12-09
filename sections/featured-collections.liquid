@@ -31,38 +31,40 @@
       -%}
 
       <div class="v-stack {% if has_at_least_one_description %}gap-4{% else %}gap-8 sm:gap-10{% endif %}">
-        <div class="featured-collections-header">
-          <featured-collections-tabs role="tablist" class="featured-collections-header__tab-list {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} scroll-area bleed">
-            <template shadowrootmode="open">
-              <slot part="tab-list" name="tab"></slot>
-            </template>
+        {%- if section.settings.show_title -%}
+          <div class="featured-collections-header">
+            <featured-collections-tabs role="tablist" class="featured-collections-header__tab-list {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} scroll-area bleed">
+              <template shadowrootmode="open">
+                <slot part="tab-list" name="tab"></slot>
+              </template>
 
-            {%- for block in section.blocks -%}
-              {%- capture tab_title -%}
-                {%- if section.settings.tabs_icon == 'arrow' -%}
-                  {%- render 'icon' with 'big-arrow-right', stroke_width: 3, direction_aware: true -%}
+              {%- for block in section.blocks -%}
+                {%- capture tab_title -%}
+                  {%- if section.settings.tabs_icon == 'arrow' -%}
+                    {%- render 'icon' with 'big-arrow-right', stroke_width: 3, direction_aware: true -%}
+                  {%- endif -%}
+
+                  <span {% if section.blocks.size == 1 and section.settings.tabs_alignment == 'center' %}class="text-center"{% endif %}>{{- block.settings.title | default: block.settings.collection.title | default: 'Collection' -}}</span>
+                {%- endcapture -%}
+
+                {%- if section.blocks.size > 1-%}
+                  <button class="{% if section.settings.tabs_icon != 'none' %}text-indent text-indent--{{ section.settings.tabs_icon }}{% endif %} h4 sm:h3" role="tab" slot="tab" aria-controls="collection-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>
+                    {{- tab_title -}}
+                  </button>
+                {%- else -%}
+                  <div class="{% if section.settings.tabs_icon != 'none' %}text-indent text-indent--{{ section.settings.tabs_icon }}{% endif %} h4 sm:h3" role="tab" slot="tab" aria-selected="true" {{ block.shopify_attributes }}>
+                    {{- tab_title -}}
+                  </div>
                 {%- endif -%}
+              {%- endfor -%}
+            </featured-collections-tabs>
 
-                <span {% if section.blocks.size == 1 and section.settings.tabs_alignment == 'center' %}class="text-center"{% endif %}>{{- block.settings.title | default: block.settings.collection.title | default: 'Collection' -}}</span>
-              {%- endcapture -%}
-
-              {%- if section.blocks.size > 1-%}
-                <button class="{% if section.settings.tabs_icon != 'none' %}text-indent text-indent--{{ section.settings.tabs_icon }}{% endif %} h4 sm:h3" role="tab" slot="tab" aria-controls="collection-{{ block.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>
-                  {{- tab_title -}}
-                </button>
-              {%- else -%}
-                <div class="{% if section.settings.tabs_icon != 'none' %}text-indent text-indent--{{ section.settings.tabs_icon }}{% endif %} h4 sm:h3" role="tab" slot="tab" aria-selected="true" {{ block.shopify_attributes }}>
-                  {{- tab_title -}}
-                </div>
-              {%- endif -%}
-            {%- endfor -%}
-          </featured-collections-tabs>
-
-          {%- if section.settings.show_view_all_button and has_at_least_one_description == false and section.settings.tabs_alignment != 'center' -%}
-            {%- assign view_all_button = 'sections.featured_collections.view_all' | t -%}
-            {%- render 'button', content: view_all_button, href: section.blocks.first.settings.link, style: 'outline', class: 'md-max:hidden' -%}
-          {%- endif -%}
-        </div>
+            {%- if section.settings.show_view_all_button and has_at_least_one_description == false and section.settings.tabs_alignment != 'center' -%}
+              {%- assign view_all_button = 'sections.featured_collections.view_all' | t -%}
+              {%- render 'button', content: view_all_button, href: section.blocks.first.settings.link, style: 'outline', class: 'md-max:hidden' -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
 
         {%- liquid
           assign product_list_class = ''
@@ -234,6 +236,12 @@
       "max": 5,
       "label": "t:global.product_list.products_per_row_desktop",
       "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "t:sections.featured_collections.show_title",
+      "default": true
     },
     {
       "type": "select",
