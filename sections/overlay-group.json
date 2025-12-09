@@ -1,1 +1,98 @@
-{"type":"custom.overlay","name":"Overlay group","sections":{"cart-drawer":{"type":"cart-drawer","blocks":{"offer_banner_y8hhtn":{"type":"offer_banner","disabled":true,"settings":{"layout":"full_width","icon_width":24,"subheading":"Special of the weekend","content":"<p>10% Extra auf alle Becher in unserem Sortiment<\/p>","button_text":"BECHER10","button_link":"","button_copy_on_click":true,"background":"#ff6201","text_color":"#ffffff"}},"trust_badges_N6XwNP":{"type":"trust_badges","settings":{"background":"#3d5473","text_color":"#ffffff","trust_1_icon":"shopify:\/\/shop_images\/PDP-Icons-White_0000_Truck_2.png","trust_1_icon_width":48,"trust_1_subheading":"Bestelle bis 18. Dezember für eine Lieferung vor Weihnachten","trust_1_content":"","trust_2_icon_width":16,"trust_2_subheading":"","trust_2_content":"","trust_3_icon_width":16,"trust_3_subheading":"","trust_3_content":""}}},"block_order":["offer_banner_y8hhtn","trust_badges_N6XwNP"],"settings":{"color_scheme":"scheme-a66072b8-cdc0-4b4b-a3cc-bea4920e9b3b","show_cart_note":false,"show_shipping_estimator":true,"show_shipping_text":true,"allow_discount_application":false,"show_terms_of_service_checkbox":false,"show_view_cart_button":false,"show_checkout_button":true,"enable_cross_sell":true,"cross_sell_title":"Noch mehr Freude mit:"}},"search-drawer":{"type":"search-drawer","settings":{"color_scheme":"scheme-2","popular_searches_title":"Popular searches","popular_searches_menu":"","featured_products_title":"Featured products","featured_products":[]}},"newsletter-popup":{"type":"newsletter-popup","disabled":true,"settings":{"color_scheme":"","apparition_delay":5,"show_only_on_index":true,"hide_for_account_holders":true,"show_only_once":true,"title":"Signup for our newsletter","button_text":"Subscribe","content":"Describe what your customers will receive when subscribing to your newsletter.","conditions":"By entering your address, you confirm that you have read our privacy policy."}}},"order":["cart-drawer","search-drawer","newsletter-popup"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "custom.overlay",
+  "name": "Overlay group",
+  "sections": {
+    "cart-drawer": {
+      "type": "cart-drawer",
+      "blocks": {
+        "offer_banner_y8hhtn": {
+          "type": "offer_banner",
+          "disabled": true,
+          "settings": {
+            "layout": "full_width",
+            "icon_width": 24,
+            "subheading": "Special of the weekend",
+            "content": "<p>10% Extra auf alle Becher in unserem Sortiment</p>",
+            "button_text": "BECHER10",
+            "button_link": "",
+            "button_copy_on_click": true,
+            "background": "#ff6201",
+            "text_color": "#ffffff"
+          }
+        },
+        "trust_badges_N6XwNP": {
+          "type": "trust_badges",
+          "settings": {
+            "background": "#3d5473",
+            "text_color": "#ffffff",
+            "trust_1_icon": "shopify://shop_images/PDP-Icons-White_0000_Truck_2.png",
+            "trust_1_icon_width": 48,
+            "trust_1_subheading": "Bestelle bis 18. Dezember für eine Lieferung vor Weihnachten",
+            "trust_1_content": "",
+            "trust_2_icon_width": 16,
+            "trust_2_subheading": "",
+            "trust_2_content": "",
+            "trust_3_icon_width": 16,
+            "trust_3_subheading": "",
+            "trust_3_content": ""
+          }
+        }
+      },
+      "block_order": [
+        "offer_banner_y8hhtn",
+        "trust_badges_N6XwNP"
+      ],
+      "settings": {
+        "color_scheme": "scheme-a66072b8-cdc0-4b4b-a3cc-bea4920e9b3b",
+        "show_cart_note": false,
+        "show_shipping_estimator": true,
+        "show_shipping_text": true,
+        "allow_discount_application": false,
+        "show_terms_of_service_checkbox": false,
+        "show_view_cart_button": false,
+        "show_checkout_button": true,
+        "enable_cross_sell": true,
+        "cross_sell_title": "Noch mehr Freude mit:"
+      }
+    },
+    "search-drawer": {
+      "type": "search-drawer",
+      "settings": {
+        "color_scheme": "scheme-2",
+        "popular_searches_title": "Popular searches",
+        "popular_searches_menu": "",
+        "featured_products_title": "Featured products",
+        "featured_products": []
+      }
+    },
+    "newsletter-popup": {
+      "type": "newsletter-popup",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "",
+        "apparition_delay": 5,
+        "show_only_on_index": true,
+        "hide_for_account_holders": true,
+        "show_only_once": true,
+        "title": "Signup for our newsletter",
+        "button_text": "Subscribe",
+        "content": "Describe what your customers will receive when subscribing to your newsletter.",
+        "conditions": "By entering your address, you confirm that you have read our privacy policy."
+      }
+    }
+  },
+  "order": [
+    "cart-drawer",
+    "search-drawer",
+    "newsletter-popup"
+  ]
+}
