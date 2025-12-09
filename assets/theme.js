@@ -16,7 +16,7 @@ var ConfirmButton = class extends HTMLElement {
         event.preventDefault();
       } 
     }); 
-  }
+  } 
 };
 if (!window.customElements.get("confirm-button")) {
   window.customElements.define("confirm-button", ConfirmButton);
