@@ -387,8 +387,9 @@
       "name": "t:sections.featured_collections.name",
       "settings": {
         "color_scheme": "scheme-2",
+        "layout_style": "standard",
         "stack_products_mobile": false,
-        "stack_products_desktop": false,
+        "stack_products_desktop": true,
         "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
         "show_title": false,
@@ -819,6 +820,7 @@
       "name": "t:sections.featured_collections.name",
       "settings": {
         "color_scheme": "scheme-2",
+        "layout_style": "standard",
         "stack_products_mobile": false,
         "stack_products_desktop": false,
         "products_per_row_mobile": "2",
@@ -995,6 +997,7 @@
       "name": "t:sections.featured_collections.name",
       "settings": {
         "color_scheme": "scheme-2",
+        "layout_style": "standard",
         "stack_products_mobile": false,
         "stack_products_desktop": false,
         "products_per_row_mobile": "2",
@@ -1117,6 +1120,7 @@
       "name": "t:sections.featured_collections.name",
       "settings": {
         "color_scheme": "scheme-2",
+        "layout_style": "standard",
         "stack_products_mobile": false,
         "stack_products_desktop": false,
         "products_per_row_mobile": "2",
