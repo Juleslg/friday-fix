@@ -2,7 +2,7 @@
   <style>
     #shopify-section-{{ section.id }} {
       {%- if section.settings.layout_style == 'compact_double_row' -%}
-        --product-list-column-count: 3;
+        --product-list-column-count: 2;
       {%- else -%}
         --product-list-column-count: {{ section.settings.products_per_row_mobile | times: 1 }};
       {%- endif -%}
@@ -11,7 +11,7 @@
     @media screen and (min-width: 700px) {
       #shopify-section-{{ section.id }} {
         {%- if section.settings.layout_style == 'compact_double_row' -%}
-          --product-list-column-count: 4;
+          --product-list-column-count: 5;
         {%- else -%}
           --product-list-column-count: 2;
         {%- endif -%}
@@ -29,8 +29,37 @@
     }
     
     {%- comment -%}
-    Compact mode uses the same spacing as collection pages for consistency
+    Compact mode mimics the collection page "thumbnails" view
     {%- endcomment -%}
+    {%- if section.settings.layout_style == 'compact_double_row' -%}
+      #shopify-section-{{ section.id }} .product-list {
+        --product-card-row-count: 1;
+        --product-list-card-min-width: 5rem;
+        --product-list-row-gap: var(--product-list-column-gap);
+      }
+      
+      /* Hide everything except product image in compact mode */
+      #shopify-section-{{ section.id }} .product-card__figure .badge-list,
+      #shopify-section-{{ section.id }} .product-card__info,
+      #shopify-section-{{ section.id }} .product-card__quick-buy,
+      #shopify-section-{{ section.id }} .product-card__floating-size-selector,
+      #shopify-section-{{ section.id }} .product-card__swatch-list {
+        display: none;
+      }
+      
+      /* Ensure highlighted cards don't span multiple columns in compact mode */
+      #shopify-section-{{ section.id }} .product-card--highlight {
+        grid-row-start: span var(--product-card-row-count);
+        grid-column: span 1;
+        grid-row-end: auto;
+      }
+      
+      @media screen and (min-width: 1150px) {
+        #shopify-section-{{ section.id }} {
+          --product-list-column-count: 7;
+        }
+      }
+    {%- endif -%}
   </style>
 
   <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
@@ -156,9 +185,9 @@
                 <product-list id="{{ product_list_id }}" class="product-list product-list--padded {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} full-bleed {{ product_list_class }}">
                   {%- liquid
                     if section.settings.layout_style == 'compact_double_row'
-                      assign display_products_count = 12
+                      assign display_products_count = 14
                       capture sizes
-                        echo '(max-width: 699px) calc(100vw / 3 - 40px), (max-width: 999px) calc(100vw / 4 - 64px), calc((100vw - 96px) / 6)'
+                        echo '(max-width: 699px) calc(100vw / 2 - 40px), (max-width: 999px) calc(100vw / 5 - 64px), (max-width: 1149px) calc((100vw - 96px) / 6), calc((100vw - 96px) / 7)'
                       endcapture
                     else
                       assign display_products_count = block.settings.products_count
