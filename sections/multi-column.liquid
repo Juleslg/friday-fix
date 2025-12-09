@@ -37,6 +37,11 @@
     #shopify-section-{{ section.id }} .multi-column__item:not(.color-scheme--{{ section.settings.color_scheme.id }}) {
       padding: var(--container-gutter);
     }
+
+    {%- comment -%}Remove top margin from images in multi-column to prevent alignment issues{%- endcomment -%}
+    #shopify-section-{{ section.id }} .prose :where(img, picture, figure) {
+      margin-block-start: 0;
+    }
   </style>
 
   <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
