@@ -28,23 +28,9 @@
       }
     }
     
-    {%- if section.settings.layout_style == 'compact_double_row' -%}
-      #shopify-section-{{ section.id }} .product-list {
-        --product-list-row-gap: 1rem;
-        --product-list-column-gap: 0.75rem;
-      }
-      
-      #shopify-section-{{ section.id }} .product-card__info {
-        gap: 0.5rem;
-      }
-      
-      @media screen and (min-width: 1000px) {
-        #shopify-section-{{ section.id }} .product-list {
-          --product-list-row-gap: 1.25rem;
-          --product-list-column-gap: 1rem;
-        }
-      }
-    {%- endif -%}
+    {%- comment -%}
+    Compact mode uses the same spacing as collection pages for consistency
+    {%- endcomment -%}
   </style>
 
   <div class="color-scheme color-scheme--{{ section.settings.color_scheme.id }}">
