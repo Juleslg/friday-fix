@@ -53,7 +53,7 @@
 
         <div class="{% unless section.settings.stack_on_desktop %}floating-controls-container{% endunless %}">
           {%- unless section.settings.stack_on_desktop -%}
-            <carousel-prev-button class="floating-controls__control" aria-controls="{{ carousel_id }}">
+            <carousel-prev-button class="floating-controls__control floating-controls__control--offset" aria-controls="{{ carousel_id }}">
               <button class="circle-button circle-button--xl" disabled>
                 <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
                 {%- render 'icon' with 'big-arrow-left', direction_aware: true, width: 14 -%}
@@ -66,7 +66,7 @@
           </scroll-carousel>
 
           {%- unless section.settings.stack_on_desktop -%}
-            <carousel-next-button class="floating-controls__control" aria-controls="{{ carousel_id }}">
+            <carousel-next-button class="floating-controls__control floating-controls__control--offset" aria-controls="{{ carousel_id }}">
               <button class="circle-button circle-button--xl">
                 <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
                 {%- render 'icon' with 'big-arrow-right', direction_aware: true, width: 14 -%}
