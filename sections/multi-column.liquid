@@ -51,9 +51,43 @@
 
         {%- assign carousel_id = section.id | append: '-carousel' -%}
 
-        <scroll-carousel id="{{ carousel_id }}" class="multi-column {% if section.settings.show_internal_borders %}multi-column--bordered{% endif %} scroll-area snap-x bleed">
-          {%- content_for 'blocks' -%}
-        </scroll-carousel>
+        <div class="{% unless section.settings.stack_on_desktop %}floating-controls-container{% endunless %}">
+          {%- unless section.settings.stack_on_desktop -%}
+            <carousel-prev-button class="floating-controls__control" aria-controls="{{ carousel_id }}">
+              <button class="circle-button circle-button--xl" disabled>
+                <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+                {%- render 'icon' with 'big-arrow-left', direction_aware: true, width: 14 -%}
+              </button>
+            </carousel-prev-button>
+          {%- endunless -%}
+
+          <scroll-carousel id="{{ carousel_id }}" class="multi-column {% if section.settings.show_internal_borders %}multi-column--bordered{% endif %} scroll-area snap-x bleed">
+            {%- content_for 'blocks' -%}
+          </scroll-carousel>
+
+          {%- unless section.settings.stack_on_desktop -%}
+            <carousel-next-button class="floating-controls__control" aria-controls="{{ carousel_id }}">
+              <button class="circle-button circle-button--xl">
+                <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+                {%- render 'icon' with 'big-arrow-right', direction_aware: true, width: 14 -%}
+              </button>
+            </carousel-next-button>
+          {%- endunless -%}
+        </div>
+
+        {%- if section.settings.show_scrolling_bar and section.settings.stack_on_desktop == false or section.settings.stack_on_mobile == false -%}
+          {%- liquid
+            assign progress_bar_class = ''
+
+            if section.settings.stack_on_desktop == false and section.settings.stack_on_mobile
+              assign progress_bar_class = 'sm-max:hidden'
+            elsif section.settings.stack_on_mobile == false and section.settings.stack_on_desktop
+              assign progress_bar_class = 'sm:hidden'
+            endif
+          -%}
+
+          <progress-bar track-scroll-target="{{ carousel_id }}" class="progress-bar progress-bar--limit-width {{ progress_bar_class }}"></progress-bar>
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -120,6 +154,13 @@
       "type": "checkbox",
       "id": "stack_on_desktop",
       "label": "t:sections.multi_column.stack_on_desktop",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scrolling_bar",
+      "label": "t:global.product_list.show_scrolling_bar",
+      "info": "t:global.product_list.show_scrolling_bar_info",
       "default": true
     },
     {
