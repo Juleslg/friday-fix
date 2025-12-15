@@ -31,6 +31,7 @@ Supported variables
 * show_quick_buy: show or not the quick buy (which open a modal if the product contains more than 1 choice)
 * show_secondary_image: show or not the secondary media on hover. If nothing is set, the theme uses the default product card setting
 * show_swatches: show or not the swatches. The swatch type is inferred from setting, and will default to true if nothing is set.
+* force_show_swatches: if set to true, swatches will be shown even when displaying a specific variant (used with variant cards mode)
 * force_no_border: if set to true, no border will be added around cards, even if the global setting ask to
 * sizes: the value of the sizes attribute (because it depends of the context, it should be calculated outside)
 * prefix_id: an optional prefix being used to prefix all the inputs. This is useful when we have to output multiple
@@ -47,9 +48,11 @@ Supported variables
   assign show_secondary_image = show_secondary_image | default: settings.product_card_show_secondary_image, allow_false: true
   assign show_swatches = show_swatches | default: settings.product_card_show_color_swatches, allow_false: true
 
-  # If showing individual variant, disable some features
+  # If showing individual variant, disable some features (unless force_show_swatches is enabled)
   if variant
-    assign show_swatches = false
+    if force_show_swatches != true
+      assign show_swatches = false
+    endif
     assign show_quick_buy = false
     assign card_product_url = product.url | append: '?variant=' | append: variant.id
     assign card_product_available = variant.available

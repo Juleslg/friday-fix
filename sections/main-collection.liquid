@@ -76,7 +76,7 @@
           {%- else -%}
             <div class="collection__results">
               {%- render 'active-facets', source: collection, hash: "#collection" -%}
-              {%- render 'product-list', products: collection.products, allow_highlight: true, paginate: paginate, blocks: section.blocks, output_override_attributes: true, show_variants_as_separate_cards: section.settings.show_variants_as_separate_cards, cards_per_page: section.settings.cards_per_page, specific_colors_to_show: section.settings.specific_colors_to_show -%}
+              {%- render 'product-list', products: collection.products, allow_highlight: true, paginate: paginate, blocks: section.blocks, output_override_attributes: true, show_variants_as_separate_cards: section.settings.show_variants_as_separate_cards, cards_per_page: section.settings.cards_per_page, specific_colors_to_show: section.settings.specific_colors_to_show, show_swatches_with_variant_cards: section.settings.show_swatches_with_variant_cards -%}
             </div>
 
             {%- render 'pagination', paginate: paginate, facet: true, hash: '#collection' -%}
@@ -194,6 +194,13 @@ on desktop based on the settings
       "label": "Filter specific colors (optional)",
       "info": "Enter color names separated by commas (e.g., 'Red, Blue, Black'). Leave empty to show all color variants. Case-insensitive.",
       "placeholder": "Red, Blue, Black, White"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_swatches_with_variant_cards",
+      "label": "Show color swatches under variant cards",
+      "info": "When enabled, color swatches will be displayed under each product card even in variant mode, allowing customers to quickly switch between colors.",
+      "default": false
     },
     {
       "type": "checkbox",

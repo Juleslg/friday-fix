@@ -24,6 +24,7 @@ Supported variables
 * show_variants_as_separate_cards: if true, products with color options will display one card per color variant
 * cards_per_page: number of cards to show per page when show_variants_as_separate_cards is enabled
 * specific_colors_to_show: comma-separated list of color names to filter (e.g., "Red, Blue, Black")
+* show_swatches_with_variant_cards: if true, color swatches will be shown under each variant card
 * output_override_attributes: only for collection page, we allow customers to switch the layout. To avoid CLS, we have
                               to save the attribute in the cart and apply it to the product list. A better approach would
                               be to use container query around cards, but unfortunately we are using subgrid, and currently
@@ -291,7 +292,7 @@ Supported variables
           -%}
           
           {%- comment -%}Render the card and increment counter{%- endcomment -%}
-          {%- render 'product-card', product: product, variant: variant, reveal: true, allow_highlight: allow_highlight, sizes: sizes, force_no_border: spotlight, section_color_scheme: section_color_scheme, prefix_id: prefix_id, position: forloop.index -%}
+          {%- render 'product-card', product: product, variant: variant, reveal: true, allow_highlight: allow_highlight, sizes: sizes, force_no_border: spotlight, section_color_scheme: section_color_scheme, prefix_id: prefix_id, position: forloop.index, force_show_swatches: show_swatches_with_variant_cards -%}
           {%- assign cards_rendered = cards_rendered | plus: 1 -%}
         {%- endfor -%}
         
