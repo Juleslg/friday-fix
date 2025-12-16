@@ -328,13 +328,19 @@ Supported variables
 
               {%- liquid
                 assign limit = 4
+                
+                # When force_show_swatches is enabled (variant cards mode), make swatches link to product page
+                assign swatch_url = nil
+                if force_show_swatches
+                  assign swatch_url = product.url
+                endif
 
                 for option_value in product_option.values
                   if forloop.index <= limit
-                    render 'option-value', type: 'swatch', param_name: param_name, option_value: option_value, option_position: product_option.position, force_unselected: true, output_variant_media: true, size: 'sm', show_tight: settings.product_card_show_tight_swatches
+                    render 'option-value', type: 'swatch', param_name: param_name, option_value: option_value, option_position: product_option.position, force_unselected: true, output_variant_media: true, size: 'sm', show_tight: settings.product_card_show_tight_swatches, url: swatch_url
                   else
                     echo '<span class="color-swatch-hidden" hidden>'
-                    render 'option-value', type: 'swatch', param_name: param_name, option_value: option_value, option_position: product_option.position, force_unselected: true, output_variant_media: true, size: 'sm', show_tight: settings.product_card_show_tight_swatches
+                    render 'option-value', type: 'swatch', param_name: param_name, option_value: option_value, option_position: product_option.position, force_unselected: true, output_variant_media: true, size: 'sm', show_tight: settings.product_card_show_tight_swatches, url: swatch_url
                     echo '</span>'
                   endif
                 endfor
