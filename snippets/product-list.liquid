@@ -25,6 +25,7 @@ Supported variables
 * cards_per_page: number of cards to show per page when show_variants_as_separate_cards is enabled
 * specific_colors_to_show: comma-separated list of color names to filter (e.g., "Red, Blue, Black")
 * show_swatches_with_variant_cards: if true, color swatches will be shown under each variant card
+* hide_out_of_stock_variants: if true, variant cards that are out of stock will be hidden
 * output_override_attributes: only for collection page, we allow customers to switch the layout. To avoid CLS, we have
                               to save the attribute in the cart and apply it to the product list. A better approach would
                               be to use container query around cards, but unfortunately we are using subgrid, and currently
@@ -285,6 +286,13 @@ Supported variables
               unless allowed_colors_filter contains variant_color_check
                 continue
               endunless
+            endif
+
+            # Check if we should hide out of stock variants
+            # If this variant is out of stock and hide_out_of_stock_variants is enabled,
+            # don't mark this color as rendered yet - maybe another variant of this color is in stock
+            if hide_out_of_stock_variants and variant.available == false
+              continue
             endif
 
             # This color passes all filters - mark it as rendered
