@@ -14,6 +14,23 @@
       #shopify-section-{{ section.id }} {
         --product-list-column-count: {{ section.settings.products_per_row_desktop }};
       }
+      
+      {%- if section.settings.layout_style == 'thumbnails' -%}
+        #shopify-section-{{ section.id }} .product-list[desktop-layout="thumbnails"] {
+          --product-card-row-count: 1;
+          --product-list-column-count: 6;
+          --product-list-card-min-width: 5rem;
+          --product-list-row-gap: var(--product-list-column-gap);
+        }
+      {%- endif -%}
+    }
+    
+    @media screen and (min-width: 1150px) {
+      {%- if section.settings.layout_style == 'thumbnails' -%}
+        #shopify-section-{{ section.id }} .product-list[desktop-layout="thumbnails"] {
+          --product-list-column-count: 7;
+        }
+      {%- endif -%}
     }
   </style>
 
@@ -135,7 +152,7 @@
                   </carousel-prev-button>
                 {%- endunless -%}
 
-                <product-list id="{{ product_list_id }}" class="product-list product-list--padded {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} full-bleed {{ product_list_class }}">
+                <product-list id="{{ product_list_id }}" class="product-list product-list--padded {% if section.settings.tabs_alignment == 'center' %}justify-center{% endif %} full-bleed {{ product_list_class }}" {% if section.settings.layout_style == 'thumbnails' %}desktop-layout="thumbnails"{% endif %}>
                   {%- capture sizes -%}(max-width: 699px) calc(100vw / {{ section.settings.products_per_row_mobile }} - 40px), (max-width: 999px) calc(100vw / {{ 3 | at_most: section.settings.products_per_row_desktop }} - 64px), calc((100vw - 96px) / {{ section.settings.products_per_row_desktop }}){%- endcapture -%}
 
                   {%- liquid
@@ -236,6 +253,22 @@
       "max": 5,
       "label": "t:global.product_list.products_per_row_desktop",
       "default": 4
+    },
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Layout style",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid (normal cards)"
+        },
+        {
+          "value": "thumbnails",
+          "label": "Thumbnails (compact two rows)"
+        }
+      ],
+      "default": "grid"
     },
     {
       "type": "checkbox",
