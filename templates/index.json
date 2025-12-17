@@ -205,6 +205,8 @@
         "stack_products_desktop": false,
         "products_per_row_mobile": "2",
         "products_per_row_desktop": 4,
+        "layout_style": "thumbnails",
+        "show_title": true,
         "tabs_alignment": "start",
         "tabs_icon": "none",
         "show_view_all_button": false,
