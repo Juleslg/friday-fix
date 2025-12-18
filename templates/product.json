@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -27,10 +36,6 @@
           "settings": {
             "show_taxes_notice": false
           }
-        },
-        "reviews_io_reviewsio_rating_output_TKhEFd": {
-          "type": "shopify://apps/reviews-io/blocks/reviewsio-rating-output/92a082e5-b297-4e88-b428-ac96cbc505f9",
-          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -149,7 +154,6 @@
         "variant_sale_badge_haayEM",
         "title",
         "price",
-        "reviews_io_reviewsio_rating_output_TKhEFd",
         "variant_picker",
         "buy_buttons",
         "inventory_MtYw7K",
@@ -216,7 +220,6 @@
         "heading_hR7gQR": {
           "type": "heading",
           "settings": {
-            "text": "{{ closest.product.metafields.custom.landebahn_bilder.value.headline.value }}",
             "heading_size": "h4",
             "html_tag": "p",
             "indent": "none",
@@ -235,7 +238,6 @@
         "color_scheme": "",
         "allow_transparent_header": true,
         "image_size": "sm",
-        "image": "{{ product.metafields.custom.landebahn_bilder.value.desktop_bild.value }}",
         "overlay_color": "#000000",
         "overlay_opacity": 5,
         "enable_sticky_content": false,
@@ -251,9 +253,7 @@
           "type": "item",
           "settings": {
             "icon": "none",
-            "title": "{{ product.metafields.custom.terminal_1_kollektionen.value.headline_1.value }}",
-            "heading_tag": "h6",
-            "content": "{{ product.metafields.custom.terminal_1_kollektionen.value.body | metafield_tag }}"
+            "heading_tag": "h6"
           }
         },
         "item_TyzU69": {
